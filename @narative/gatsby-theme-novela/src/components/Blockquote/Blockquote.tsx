@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import mediaqueries from "@styles/media";
+import styled from '@emotion/styled';
+import mediaqueries from '@styles/media';
 
 const Blockquote = styled.blockquote`
   transition: ${p => p.theme.colorModeTransition};

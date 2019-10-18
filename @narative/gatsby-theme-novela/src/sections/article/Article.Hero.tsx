@@ -2,10 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import Headings from '@components/Headings';
-import Image, { ImagePlaceholder } from '@components/Image';
+import Image, {ImagePlaceholder} from '@components/Image';
 
 import mediaqueries from '@styles/media';
-import { IArticle, IAuthor } from '@types';
+import {IArticle, IAuthor} from '@types';
 
 import ArticleAuthors from './Article.Authors';
 
@@ -14,7 +14,7 @@ interface ArticleHeroProps {
   authors: IAuthor[];
 }
 
-const ArticleHero = ({ article, authors }: ArticleHeroProps) => {
+const ArticleHero = ({article, authors}: ArticleHeroProps) => {
   const hasCoAUthors = authors.length > 1;
   const hasHeroImage =
     Object.keys(article.hero.full).length !== 0 &&
@@ -72,7 +72,7 @@ const Hero = styled.div`
   `}
 `;
 
-const ArticleMeta = styled.div<{ hasCoAUthors: boolean }>`
+const ArticleMeta = styled.div<{hasCoAUthors: boolean}>`
   margin-left: ${p => (p.hasCoAUthors ? '10px' : '0')};
 
   ${mediaqueries.phablet`
@@ -115,18 +115,15 @@ const HeroHeading = styled(Headings.h1)`
   margin-bottom: 25px;
   font-weight: bold;
   line-height: 1.32;
-
   ${mediaqueries.tablet`
     margin-bottom: 20px;
     font-size: 36px;
-  `}
-
-  ${mediaqueries.phablet`
+  `} ${mediaqueries.phablet`
     font-size: 32px;
-  `}
+  `};
 `;
 
-const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
+const HeroSubtitle = styled.div<{hasCoAUthors: boolean}>`
   position: relative;
   display: flex;
   font-size: 18px;

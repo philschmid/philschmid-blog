@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import React, {useContext} from 'react';
+import {graphql, useStaticQuery} from 'gatsby';
 import styled from '@emotion/styled';
 
 import Section from '@components/Section';
 import Bio from '@components/Bio';
 import Icons from '@icons';
 import mediaqueries from '@styles/media';
-import { IAuthor } from '@types';
+import {IAuthor} from '@types';
 
-import { GridLayoutContext } from './Articles.List.Context';
+import {GridLayoutContext} from './Articles.List.Context';
 
 const authorQuery = graphql`
   {
@@ -27,8 +27,8 @@ const authorQuery = graphql`
   }
 `;
 
-function ArticlesHero({ authors }: IAuthor) {
-  const { gridLayout = 'tiles', hasSetGridLayout, setGridLayout } = useContext(
+function ArticlesHero({authors}: IAuthor) {
+  const {gridLayout = 'tiles', hasSetGridLayout, setGridLayout} = useContext(
     GridLayoutContext,
   );
 
@@ -46,8 +46,8 @@ function ArticlesHero({ authors }: IAuthor) {
 
   return (
     <Section relative id="Articles__Hero">
-      <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
-        <HeroHeading dangerouslySetInnerHTML={{ __html: hero.heading }} />
+      <HeadingContainer style={{maxWidth: `${hero.maxWidth}px`}}>
+        <HeroHeading dangerouslySetInnerHTML={{__html: hero.heading}} />
       </HeadingContainer>
       <SubheadingContainer>
         <Bio author={featuredAuthor} />
@@ -116,12 +116,22 @@ const HeadingContainer = styled.div`
   ${mediaqueries.tablet`
     width: 100%;
   `}
+    ${mediaqueries.tablet`
+    margin: 60px 0px;
+  `};
+
+  ${mediaqueries.phablet`
+    margin: 20px 0px;
+  `};
 `;
 
 const HeroHeading = styled.h1`
   font-style: normal;
+  font-family: ${p => p.theme.fonts.serif};
+
   font-weight: 600;
   font-size: 52px;
+
   line-height: 1.15;
   color: ${p => p.theme.colors.primary};
 
@@ -138,7 +148,7 @@ const HeroHeading = styled.h1`
   `}
 `;
 
-const GridButton = styled.button<{ active: boolean }>`
+const GridButton = styled.button<{active: boolean}>`
   position: relative;
   display: flex;
   align-items: center;

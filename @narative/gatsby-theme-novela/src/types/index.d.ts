@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import {ReactNode} from 'react';
 
 export interface IPaginator {
   pageCount: number;
@@ -28,6 +28,7 @@ interface IGatsbyImageFixed extends IGatsbyImage {
 export interface IAuthor {
   authorsPage?: boolean;
   featured?: boolean;
+  skills: string[];
   name: string;
   slug: string;
   bio: string;

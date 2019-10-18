@@ -2,9 +2,9 @@ require('dotenv').config();
 
 const siteMetadata = {
   title: `Blog by Philipp Schmid`,
-  name: `Philipp Schmid`,
+  name: `philschmid`,
   siteUrl: `https://novela.narative.co`,
-  description: `This is my description that will be used in the meta tags and important for search results`,
+  description: `Blog about Machine Learning, Cloud, AWS, GCP, helping People, Code, Share, be helpful`,
   hero: {
     heading: `Welcome, you can read Articles about Machine Learning and Cloud.`,
     maxWidth: 652,
@@ -13,9 +13,7 @@ const siteMetadata = {
     {
       url: `https://twitter.com/narative`,
     },
-    {
-      url: `https://behance.com/narative`,
-    },
+
     {
       url: `https://github.com/narative`,
     },
@@ -24,15 +22,6 @@ const siteMetadata = {
     },
     {
       url: `https://www.linkedin.com/company/narative/`,
-    },
-    {
-      url: `https://dribbble.com/narativestudio`,
-    },
-    {
-      url: `https://youtube.com`,
-    },
-    {
-      url: `https://stackoverflow.com`,
     },
   ],
 };
@@ -56,8 +45,8 @@ const plugins = [
   {
     resolve: `gatsby-plugin-manifest`,
     options: {
-      name: `Novela by Narative`,
-      short_name: `Novela`,
+      name: `Blog by Philipp Schmid`,
+      short_name: `philschmid`,
       start_url: `/`,
       background_color: `#fff`,
       theme_color: `#fff`,

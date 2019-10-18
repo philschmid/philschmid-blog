@@ -1,48 +1,17 @@
-- name: Dennis Brotzky
+- name: Philipp Schmid
   bio: |
-    Written by You. This is where your author bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  avatar: ./avatars/dennis-brotzky.jpg
+    Hello, I am Philipp 23 years old and a Cloud & Machine Learning enthusiast. 
+    If you curious about something i wrote feel free to send me an email.
+  avatar: ./avatars/philipp-schmid.png
   featured: true
   social:
-    - url: https://unsplash.com
-    - url: https://stackoverflow.com
     - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-
-- name: Thiago Costa
-  bio: |
-    Written by You. This is where your author bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  avatar: ./avatars/thiago-costa.jpg
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-
-- name: Brad Tiller
-  bio: |
-    Written by You. This is where your author bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  avatar: ./avatars/brad-tiller.jpg
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-
-- name: Mack Mansouri
-  bio: |
-    Written by You. This is where your author bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  avatar: ./avatars/mack-mansouri.jpg
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
+    - url: https://twitter.com/narative
+    - url: https://instagram.com/narative.co
+    - url: https://www.linkedin.com/company/narative/
+  skills:
+    - AWS
+    - Tensorflow
+    - Scikit-Learn
+    - GCP
+    - React

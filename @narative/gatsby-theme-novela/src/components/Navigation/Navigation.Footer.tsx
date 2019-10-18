@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { graphql, useStaticQuery } from "gatsby";
+import React from 'react';
+import styled from '@emotion/styled';
+import {graphql, useStaticQuery} from 'gatsby';
 
-import Section from "@components/Section";
-import SocialLinks from "@components/SocialLinks";
-
-import mediaqueries from "@styles/media";
+import Section from '@components/Section';
+import SocialLinks from '@components/SocialLinks';
+import Subscription from '../Subscription';
+import mediaqueries from '@styles/media';
 
 const siteQuery = graphql`
   {
@@ -26,11 +26,13 @@ const siteQuery = graphql`
 
 function Footer() {
   const results = useStaticQuery(siteQuery);
-  const { name, social } = results.allSite.edges[0].node.siteMetadata;
+  const {name, social} = results.allSite.edges[0].node.siteMetadata;
 
   return (
     <>
       <FooterGradient />
+      <HoritzontalRule />
+      <Subscription />
       <Section narrow>
         <HoritzontalRule />
         <FooterContainer>

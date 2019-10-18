@@ -1,18 +1,19 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-import Image from "@components/Image";
+import Image from '@components/Image';
 
-import mediaqueries from "@styles/media";
-import { IAuthor } from "@types";
+import mediaqueries from '@styles/media';
+import {IAuthor} from '@types';
 
-import SocialLinks from "@components/SocialLinks";
+import SocialLinks from '@components/SocialLinks';
 
 interface AuthorHeroProps {
   author: IAuthor;
 }
 
-const AuthorHero = ({ author }: AuthorHeroProps) => {
+const AuthorHero = ({author}: AuthorHeroProps) => {
+  console.log(author);
   return (
     <Hero>
       <HeroImage>
@@ -20,6 +21,11 @@ const AuthorHero = ({ author }: AuthorHeroProps) => {
       </HeroImage>
       <Heading>{author.name}</Heading>
       <Subheading>{author.bio}</Subheading>
+      <SkillList>
+        {author.skills.map((skill: string) => (
+          <SkillItem>{skill}</SkillItem>
+        ))}
+      </SkillList>
       <Social>
         <SocialLinks links={author.social} />
       </Social>
@@ -37,6 +43,36 @@ const Hero = styled.div`
   align-items: center;
   justify-content: center;
   margin: 35px auto 110px;
+`;
+const SkillList = styled.ul`
+  margin: 10px;
+
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
+const SkillItem = styled.li`
+  margin: 10px;
+  border-radius: 50px;
+  padding: 10px;
+
+  border: 1px solid ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.accent};
+  background: ${p => p.theme.colors.inputBackground};
+  font-weight: 600;
+  border-radius: 35px;
+  letter-spacing: 0.42px;
+  transition: border-color 0.2s var(--ease-in-out-quad),
+    background 0.2s var(--ease-in-out-quad), color 0.2s var(--ease-in-out-quad);
+
+  &:hover {
+    background: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.background};
+  }
 `;
 
 const HeroImage = styled.div`

@@ -13,6 +13,8 @@ import {
   getWindowDimensions,
   getBreakpointFromTheme,
 } from '@utils';
+import {Redirect} from '@reach/router';
+import GatsbyLink from 'gatsby-link';
 
 const siteQuery = graphql`
   {
@@ -78,7 +80,9 @@ function NavigationHeader() {
             </button>
           ) : (
             <>
+              <SearchIconButton />
               <SharePageButton />
+              <AuthorIconButton />
               <DarkModeToggle />
             </>
           )}
@@ -109,6 +113,44 @@ function DarkModeToggle() {
     >
       <MoonOrSun isDark={isDark} />
       <MoonMask isDark={isDark} />
+    </IconWrapper>
+  );
+}
+
+function SearchIconButton() {
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
+  const fill = isDark ? '#fff' : '#000';
+
+  return (
+    <IconWrapper
+      isDark={isDark}
+      data-a11y="false"
+      aria-label="Link to Author Profil"
+      title="Link to Author Profil"
+    >
+      <GatsbyLink to="/">
+        <Icons.SearchIcon fill={fill} />
+      </GatsbyLink>
+    </IconWrapper>
+  );
+}
+
+function AuthorIconButton() {
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
+  const fill = isDark ? '#fff' : '#000';
+
+  return (
+    <IconWrapper
+      isDark={isDark}
+      data-a11y="false"
+      aria-label="Link to Author Profil"
+      title="Link to Author Profil"
+    >
+      <GatsbyLink to="/authors/philipp-schmid">
+        <Icons.AuthorIcon fill={fill} />
+      </GatsbyLink>
     </IconWrapper>
   );
 }

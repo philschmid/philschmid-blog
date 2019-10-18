@@ -15,6 +15,8 @@ import Paypal from './social/Paypal.Icon';
 
 // UI
 import ChevronLeft from './ui/ChevronLeft.Icon';
+import AuthorIcon from './ui/authorIcon';
+import SearchIcon from './ui/searchIcon';
 import Copied from './ui/Copied.Icon';
 import Copy from './ui/Copy.Icon';
 import Ex from './ui/Ex.Icon';
@@ -25,6 +27,8 @@ import Rows from './ui/Rows.Icon';
 import Tiles from './ui/Tiles.Icon';
 
 export default {
+  SearchIcon,
+  AuthorIcon,
   Behance,
   Dribbble,
   Facebook,

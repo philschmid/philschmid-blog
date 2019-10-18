@@ -66,6 +66,7 @@ module.exports.local = {
           id
           name
           featured
+          skills
           social {
             url
           }
@@ -156,6 +157,7 @@ module.exports.contentful = {
           id
           name
           social
+          skills
           featured
         }
       }

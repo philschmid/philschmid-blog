@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import {Link} from 'gatsby';
 import styled from '@emotion/styled';
 
 import Image from '@components/Image';
-import { IAuthor } from '@types';
+import {IAuthor} from '@types';
 
-function Bio({ author }: IAuthor) {
+function Bio({author}: IAuthor) {
   return (
     <BioContainer>
       <BioAvatar
@@ -18,7 +18,7 @@ function Bio({ author }: IAuthor) {
           <Image src={author.avatar.medium} />
         </BioAvatarInner>
       </BioAvatar>
-      <BioText dangerouslySetInnerHTML={{ __html: author.bio }} />
+      <BioText dangerouslySetInnerHTML={{__html: author.bio}} />
     </BioContainer>
   );
 }
@@ -35,8 +35,8 @@ const BioContainer = styled.div`
 const BioAvatar = styled.div`
   display: block;
   position: relative;
-  height: 40px;
-  width: 40px;
+  height: 70px;
+  width: 70px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.25);
   margin-right: 16px;
@@ -47,8 +47,8 @@ const BioAvatar = styled.div`
     position: absolute;
     left: -5px;
     top: -5px;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.25);
   }
@@ -58,15 +58,15 @@ const BioAvatar = styled.div`
     position: absolute;
     left: -5px;
     top: -5px;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border: 2px solid ${p => p.theme.colors.accent};
   }
 `;
 
 const BioAvatarInner = styled.div`
-  height: 40px;
-  width: 40px;
+  height: 70px;
+  width: 70px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.25);
   margin-right: 16px;
