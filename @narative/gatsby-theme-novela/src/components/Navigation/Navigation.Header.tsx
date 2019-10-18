@@ -81,8 +81,9 @@ function NavigationHeader() {
           ) : (
             <>
               <SearchIconButton />
-              <SharePageButton />
               <AuthorIconButton />
+              <EmailIconButton />
+              <SharePageButton />
               <DarkModeToggle />
             </>
           )}
@@ -184,6 +185,25 @@ function SharePageButton() {
       <ToolTip isDark={isDark} hasCopied={hasCopied}>
         Copied
       </ToolTip>
+    </IconWrapper>
+  );
+}
+
+function EmailIconButton() {
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
+  const fill = isDark ? '#fff' : '#000';
+
+  return (
+    <IconWrapper
+      isDark={isDark}
+      data-a11y="false"
+      aria-label="Mailto:schmidphilipp1995@gmail.com"
+      title="Mailto:schmidphilipp1995@gmail.com"
+    >
+      <a href="mailto:schmidphilipp1995@gmail.com">
+        <Icons.EmailIcon fill={fill} />
+      </a>
     </IconWrapper>
   );
 }
