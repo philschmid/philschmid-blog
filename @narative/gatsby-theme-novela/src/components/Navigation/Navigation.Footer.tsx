@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import {graphql, useStaticQuery} from 'gatsby';
+import {graphql, useStaticQuery, Link} from 'gatsby';
 
 import Section from '@components/Section';
 import SocialLinks from '@components/SocialLinks';
@@ -38,6 +38,8 @@ function Footer() {
         <FooterContainer>
           <FooterText>
             © {new Date().getFullYear()} {name}
+            <span style={{margin: '0px 10px'}}>|</span>
+            <Link to="/imprint">Imprint</Link>
           </FooterText>
           <div>
             <SocialLinks links={social} />
@@ -57,7 +59,9 @@ const FooterContainer = styled.div`
   justify-content: space-between;
   padding-bottom: 80px;
   color: ${p => p.theme.colors.grey};
-
+  a {
+    color: ${p => p.theme.colors.accent};
+  }
   ${mediaqueries.tablet`
     flex-direction: column;
     padding-bottom: 100px;
