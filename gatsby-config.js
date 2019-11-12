@@ -11,17 +11,17 @@ const siteMetadata = {
   },
   social: [
     {
-      url: `https://twitter.com/narative`,
+      url: `https://twitter.com/_philschmid`,
     },
 
     {
-      url: `https://github.com/narative`,
+      url: `https://github.com/philschmid`,
     },
     {
       url: `https://instagram.com/narative.co`,
     },
     {
-      url: `https://www.linkedin.com/company/narative/`,
+      url: `https://www.linkedin.com/in/philipp-schmid-a6a2bb196/`,
     },
   ],
 };

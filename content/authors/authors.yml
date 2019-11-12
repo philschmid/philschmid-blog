@@ -5,10 +5,10 @@
   avatar: ./avatars/philipp-schmid.png
   featured: true
   social:
-    - url: https://github.com
-    - url: https://twitter.com/narative
+    - url: https://github.com/philschmid
+    - url: https://twitter.com/_philschmid
     - url: https://instagram.com/narative.co
-    - url: https://www.linkedin.com/company/narative/
+    - url: https://www.linkedin.com/in/philipp-schmid-a6a2bb196/
   skills:
     - AWS
     - Tensorflow
