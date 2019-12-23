@@ -21,10 +21,6 @@ interface LayoutProps {
  */
 function Layout({children}: LayoutProps) {
   const [colorMode] = useColorMode();
-  const setPrivacy = (privacyValue: boolean) => {
-    localStorage.setItem('Privacy', privacyValue.toString());
-    console.log('called');
-  };
 
   useEffect(() => {
     parent.postMessage({theme: colorMode}, '*');
@@ -34,10 +30,7 @@ function Layout({children}: LayoutProps) {
     <ArticlesContextProvider>
       <Container>
         <Global styles={globalStyles} />
-        <Dialog
-          privacy={localStorage.getItem('Privacy')}
-          setPrivacy={setPrivacy}
-        />
+        <Dialog />
         <NavigationHeader />
         {children}
         <NavigationFooter />

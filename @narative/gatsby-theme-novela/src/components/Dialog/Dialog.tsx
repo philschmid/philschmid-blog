@@ -3,13 +3,12 @@ import React, {useState} from 'react';
 
 import Section from '@components/Section';
 import Headings from '@components/Headings';
-
+import {useLocalStorage} from '../../hooks/localStorage';
 import styled from '@emotion/styled';
 import mediaqueries from '@styles/media';
 
 const Dialog: React.FunctionComponent<{}> = (props: any) => {
-  const {privacy, setPrivacy} = props;
-  const [state, setState] = useState(privacy);
+  const [state, setState]: any = useLocalStorage('Privacy', null);
 
   return state !== null ? null : (
     <DialogContainer>
@@ -22,7 +21,6 @@ const Dialog: React.FunctionComponent<{}> = (props: any) => {
           </Text>
           <Button
             onClick={params => {
-              setPrivacy(true);
               setState(true);
             }}
           >
@@ -30,7 +28,6 @@ const Dialog: React.FunctionComponent<{}> = (props: any) => {
           </Button>
           <Button
             onClick={params => {
-              setPrivacy(false);
               setState(true);
 
               // localStorage.setItem('Privacy', 'false');

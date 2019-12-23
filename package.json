@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build && cp -R _redirects public/",
+    "test": "gatsby build && gatsby serve",
     "start": "rm -rf .cache && gatsby develop",
     "clean": "gatsby clean"
   },
