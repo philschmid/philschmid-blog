@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import styled from "@emotion/styled";
-import throttle from "lodash/throttle";
+import React, {useEffect, useState} from 'react';
+import styled from '@emotion/styled';
+import throttle from 'lodash/throttle';
 
-import { clamp } from "@utils";
+import {clamp} from '@utils';
 
 export interface IProgress {
   contentHeight: number;
 }
 
-function Progress({ contentHeight }: IProgress) {
+function Progress({contentHeight}: IProgress) {
   const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
@@ -19,11 +19,11 @@ function Progress({ contentHeight }: IProgress) {
     }, 20);
 
     if (contentHeight) {
-      window.addEventListener("scroll", handleScroll);
-      window.addEventListener("resize", handleScroll);
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('resize', handleScroll);
       return () => {
-        window.removeEventListener("scroll", handleScroll);
-        window.removeEventListener("resize", handleScroll);
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('resize', handleScroll);
       };
     }
   }, [contentHeight]);
@@ -31,7 +31,7 @@ function Progress({ contentHeight }: IProgress) {
   return (
     <ProgressContainer tabIndex={-1}>
       <Trackline aria-hidden="true">
-        <ProgressLine style={{ transform: `translateY(${progress}%)` }} />
+        <ProgressLine style={{transform: `translateY(${progress}%)`}} />
       </Trackline>
     </ProgressContainer>
   );
@@ -51,7 +51,7 @@ const Trackline = styled.div`
   flex-direction: column;
   height: calc(88vh - 40px);
   max-height: 425px;
-  width: 1px;
+  width: 5px;
   background-color: ${p => p.theme.colors.track};
   opacity: 0.6;
   overflow: hidden;
@@ -61,7 +61,7 @@ const ProgressLine = styled.div`
   position: absolute;
   height: 100%;
   top: -100%;
-  width: 1px;
-  background-color: ${p => p.theme.colors.progress};
+  width: 5px;
+  background-color: ${p => p.theme.colors.accent};
   left: 0;
 `;

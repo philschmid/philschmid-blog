@@ -11,7 +11,7 @@ export default () => {
   return (
     <Layout>
       <SEO
-        pathname={location.pathname}
+        pathname={'imprint'}
         title={'Imprint'}
         description={'Imprint of my blog'}
       />

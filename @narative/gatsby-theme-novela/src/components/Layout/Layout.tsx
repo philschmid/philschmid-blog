@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { Global } from '@emotion/core';
+import React, {useEffect} from 'react';
+import {Global} from '@emotion/core';
 import styled from '@emotion/styled';
-import { useColorMode } from 'theme-ui';
+import {useColorMode} from 'theme-ui';
 
 import NavigationFooter from '@components/Navigation/Navigation.Footer';
 import NavigationHeader from '@components/Navigation/Navigation.Header';
 import ArticlesContextProvider from '../../sections/articles/Articles.List.Context';
 
-import { globalStyles } from '@styles';
+import {globalStyles} from '@styles';
+import Dialog from '../Dialog';
 
 interface LayoutProps {
   children: React.ReactChild;
@@ -18,17 +19,25 @@ interface LayoutProps {
  * and the main structure of each page. Within Layout we have the <Container />
  * which hides a lot of the mess we need to create our Desktop and Mobile experiences.
  */
-function Layout({ children }: LayoutProps) {
+function Layout({children}: LayoutProps) {
   const [colorMode] = useColorMode();
+  const setPrivacy = (privacyValue: boolean) => {
+    localStorage.setItem('Privacy', privacyValue.toString());
+    console.log('called');
+  };
 
   useEffect(() => {
-    parent.postMessage({ theme: colorMode }, '*');
+    parent.postMessage({theme: colorMode}, '*');
   }, [colorMode]);
 
   return (
     <ArticlesContextProvider>
       <Container>
         <Global styles={globalStyles} />
+        <Dialog
+          privacy={localStorage.getItem('Privacy')}
+          setPrivacy={setPrivacy}
+        />
         <NavigationHeader />
         {children}
         <NavigationFooter />
