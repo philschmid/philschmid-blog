@@ -40,6 +40,8 @@ function Footer() {
             © {new Date().getFullYear()} {name}
             <span style={{margin: '0px 10px'}}>|</span>
             <Link to="/imprint">Imprint</Link>
+            <span style={{margin: '0px 10px'}}>|</span>
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </FooterText>
           <div>
             <SocialLinks links={social} />
