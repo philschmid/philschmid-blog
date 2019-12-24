@@ -55,12 +55,6 @@ const plugins = [
     },
   },
   {
-    resolve: `gatsby-plugin-google-analytics`,
-    options: {
-      trackingId: 'UA-118232427-3',
-    },
-  },
-  {
     resolve: 'gatsby-plugin-mailchimp',
     options: {
       endpoint:
