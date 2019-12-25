@@ -6,6 +6,7 @@ import Headings from '@components/Headings';
 import {useLocalStorage} from '../../hooks/localStorage';
 import styled from '@emotion/styled';
 import mediaqueries from '@styles/media';
+import ReactGA from 'react-ga';
 
 const Dialog: React.FunctionComponent<{}> = (props: any) => {
   const [state, setState]: any = useLocalStorage('Privacy', null);
@@ -22,13 +23,14 @@ const Dialog: React.FunctionComponent<{}> = (props: any) => {
           <Button
             onClick={params => {
               setState(true);
+              ReactGA.initialize('UA-154999168-1');
             }}
           >
             Accept
           </Button>
           <Button
             onClick={params => {
-              setState(true);
+              setState(false);
 
               // localStorage.setItem('Privacy', 'false');
             }}
