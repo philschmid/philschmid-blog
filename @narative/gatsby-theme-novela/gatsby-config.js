@@ -4,7 +4,7 @@ module.exports = ({
   contentAuthors = 'content/authors',
   contentPosts = 'content/posts',
   pathPrefix = '',
-  sources: { local, contentful } = { local: true, contentful: false },
+  sources: {local, contentful} = {local: true, contentful: false},
 }) => ({
   pathPrefix,
   mapping: {
@@ -36,7 +36,7 @@ module.exports = ({
         `,
         setup: ({
           query: {
-            site: { siteMetadata },
+            site: {siteMetadata},
           },
           ...rest
         }) => {
@@ -54,7 +54,7 @@ module.exports = ({
         },
         feeds: [
           {
-            serialize: ({ query: { site, allArticle, allContentfulPost } }) => {
+            serialize: ({query: {site, allArticle, allContentfulPost}}) => {
               if (local && !contentful) {
                 return allArticle.edges
                   .filter(edge => !edge.node.secret)
@@ -65,6 +65,7 @@ module.exports = ({
                       date: edge.node.date,
                       url: site.siteMetadata.siteUrl + edge.node.slug,
                       guid: site.siteMetadata.siteUrl + edge.node.slug,
+                      tag: 'test',
                       // custom_elements: [{ "content:encoded": edge.node.body }],
                       author: edge.node.author,
                     };
@@ -84,13 +85,14 @@ module.exports = ({
                     };
                   });
               } else {
-                const allArticlesData = { ...allArticle, ...allContentfulPost };
+                const allArticlesData = {...allArticle, ...allContentfulPost};
                 return allArticlesData.edges
                   .filter(edge => !edge.node.secret)
                   .map(edge => {
                     return {
                       ...edge.node,
                       description: edge.node.excerpt,
+                      tag: 'test',
                       date: edge.node.date,
                       url: site.siteMetadata.siteUrl + edge.node.slug,
                       guid: site.siteMetadata.siteUrl + edge.node.slug,
@@ -108,7 +110,9 @@ module.exports = ({
                   edges {
                     node {
                       excerpt
+                      photograph
                       date
+                      tag
                       slug
                       title
                       author
@@ -125,7 +129,9 @@ module.exports = ({
                   edges {
                     node {
                       excerpt
+                      photograph
                       date
+                      tag
                       slug
                       title
                       author {
@@ -143,7 +149,9 @@ module.exports = ({
                   edges {
                     node {
                       excerpt
+                      photograph
                       date
+                      tag
                       slug
                       title
                       author
@@ -157,6 +165,8 @@ module.exports = ({
                   edges {
                     node {
                       excerpt
+                      photograph
+                      tag
                       date
                       slug
                       title
@@ -202,9 +212,9 @@ module.exports = ({
               withWebp: true,
             },
           },
-          { resolve: `gatsby-remark-copy-linked-files` },
-          { resolve: `gatsby-remark-numbered-footnotes` },
-          { resolve: `gatsby-remark-smartypants` },
+          {resolve: `gatsby-remark-copy-linked-files`},
+          {resolve: `gatsby-remark-numbered-footnotes`},
+          {resolve: `gatsby-remark-smartypants`},
           {
             resolve: 'gatsby-remark-external-links',
             options: {

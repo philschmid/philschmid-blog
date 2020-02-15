@@ -6,7 +6,8 @@ const siteMetadata = {
   siteUrl: `https://novela.narative.co`,
   description: `Blog about Machine Learning, Cloud, AWS, GCP, helping People, Code, Share, be helpful`,
   hero: {
-    heading: `Welcome, you can read Articles about Machine Learning and Cloud.`,
+    heading: `Articles about Machine Learning and Cloud`,
+    subheading: `think, share and code`,
     maxWidth: 652,
   },
   social: [
@@ -18,7 +19,7 @@ const siteMetadata = {
       url: `https://github.com/philschmid`,
     },
     {
-      url: `https://instagram.com/narative.co`,
+      url: `https://instagram.com/schmid_philipp`,
     },
     {
       url: `https://www.linkedin.com/in/philipp-schmid-a6a2bb196/`,

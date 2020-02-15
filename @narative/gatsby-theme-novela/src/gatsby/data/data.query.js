@@ -29,6 +29,8 @@ module.exports.local = {
           dateForSEO: date
           timeToRead
           excerpt
+          tag
+          photograph
           subscription
           body
           hero {
@@ -67,6 +69,7 @@ module.exports.local = {
           name
           featured
           skills
+          me_in_15_seconds
           social {
             url
           }
@@ -106,6 +109,8 @@ module.exports.contentful = {
             }
           }
           excerpt
+          photograph
+          tag
           title
           slug
           secret
@@ -158,6 +163,7 @@ module.exports.contentful = {
           name
           social
           skills
+          me_in_15_seconds
           featured
         }
       }

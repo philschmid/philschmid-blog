@@ -7,6 +7,7 @@ import mediaqueries from '@styles/media';
 import {IAuthor} from '@types';
 
 import SocialLinks from '@components/SocialLinks';
+import Paragraph from '../../components/Paragraph/Paragraph';
 
 interface AuthorHeroProps {
   author: IAuthor;
@@ -20,7 +21,7 @@ const AuthorHero = ({author}: AuthorHeroProps) => {
         <Image src={author.avatar.large} />
       </HeroImage>
       <Heading>{author.name}</Heading>
-      <Subheading>{author.bio}</Subheading>
+      <Paragraph>{author.bio}</Paragraph>
       <SkillList>
         {author.skills.map((skill: string) => (
           <SkillItem>{skill}</SkillItem>
@@ -29,6 +30,12 @@ const AuthorHero = ({author}: AuthorHeroProps) => {
       <Social>
         <SocialLinks links={author.social} />
       </Social>
+      <br />
+      <br />
+      <Heading>Me in 15 seconds</Heading>
+      {author.me_in_15_seconds.map((paragraph: string) => (
+        <Paragraph>{paragraph}</Paragraph>
+      ))}
     </Hero>
   );
 };
@@ -98,7 +105,7 @@ const HeroImage = styled.div`
   `}
 `;
 
-const Heading = styled.h1`
+export const Heading = styled.h1`
   font-size: 38px;
   font-family: ${p => p.theme.fonts.sansSerif};
   color: ${p => p.theme.colors.primary};

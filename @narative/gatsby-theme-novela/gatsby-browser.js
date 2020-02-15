@@ -7,5 +7,7 @@ const state = localStorage.getItem('Privacy');
 console.log(state);
 if (state === 'true') {
   ReactGA.initialize('UA-154999168-1');
+  ReactGA.set({anonymizeIp: true});
+
   console.log('init');
 }

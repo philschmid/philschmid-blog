@@ -18,6 +18,7 @@ const authorQuery = graphql`
           siteMetadata {
             hero {
               heading
+              subheading
               maxWidth
             }
           }
@@ -48,6 +49,7 @@ function ArticlesHero({authors}: IAuthor) {
     <Section relative id="Articles__Hero">
       <HeadingContainer style={{maxWidth: `${hero.maxWidth}px`}}>
         <HeroHeading dangerouslySetInnerHTML={{__html: hero.heading}} />
+        <HeroSubHeading dangerouslySetInnerHTML={{__html: hero.subheading}} />
       </HeadingContainer>
       <SubheadingContainer>
         <Bio author={featuredAuthor} />
@@ -145,6 +147,29 @@ const HeroHeading = styled.h1`
 
   ${mediaqueries.phablet`
     font-size: 32px;
+  `}
+`;
+
+const HeroSubHeading = styled.h2`
+  font-style: normal;
+  font-family: ${p => p.theme.fonts.serif};
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 32px;
+
+  line-height: 1.15;
+  color: ${p => p.theme.colors.grey};
+
+  ${mediaqueries.desktop`
+    font-size: 28px
+    margin-top: 20px;
+
+  `}
+
+  ${mediaqueries.phablet`
+    font-size: 22px;
+    margin-top: 20px;
+
   `}
 `;
 

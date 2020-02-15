@@ -24,6 +24,7 @@ const Dialog: React.FunctionComponent<{}> = (props: any) => {
             onClick={params => {
               setState(true);
               ReactGA.initialize('UA-154999168-1');
+              ReactGA.set({anonymizeIp: true});
             }}
           >
             Accept

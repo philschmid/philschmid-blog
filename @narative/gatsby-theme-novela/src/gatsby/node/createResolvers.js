@@ -17,7 +17,7 @@ const mdxResolverPassthrough = fieldName => async (
 };
 
 // Define resolvers for custom fields
-module.exports = ({ createResolvers }) => {
+module.exports = ({createResolvers}) => {
   createResolvers({
     Article: {
       excerpt: {
