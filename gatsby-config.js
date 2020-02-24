@@ -3,7 +3,7 @@ require('dotenv').config();
 const siteMetadata = {
   title: `Blog by Philipp Schmid`,
   name: `philschmid`,
-  siteUrl: `https://novela.narative.co`,
+  siteUrl: `https://philschmid.de`,
   description: `Blog about Machine Learning, Cloud, AWS, GCP, helping People, Code, Share, be helpful`,
   hero: {
     heading: `Articles about Machine Learning and Cloud`,
