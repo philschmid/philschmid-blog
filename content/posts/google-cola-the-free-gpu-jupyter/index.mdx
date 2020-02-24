@@ -7,15 +7,35 @@ excerpt: A Short Introduction to Google Colab and how to use it best features, l
 tag: Machine Learning
 photograph: Photo by Jonas Svidras on Unsplash
 ---
+## What is Google Colab
+**Google Colaboratory** or „Colab“ for short is a free Jupyter notebook service from Google. It requires no setup and runs entirely in the cloud. In Google Colab you can write, execute, save and share your Jupiter Notebooks. You access powerful computing resources like TPUs and GPUs all for free through your browser. 
+All major Python libraries, like [Tensorflow](https://www.tensorflow.org/),  [Scikit-learn](https://scikit-learn.org/), [PyTorch](https://pytorch.org/),  [Pandas](https://pandas.pydata.org/),  etc. are pre-installed. Google Colab requires no configuration, you only need a Google Account and then you are good to go. Your notebooks are
+stored in your  [Google Drive](https://drive.google.com/) , or can be loaded from  [GitHub](https://github.com/) .  Colab notebooks can be shared just as you would with Google Docs or Sheets. Simply click the Share button at the top right of any Colab notebook, or follow these Google Drive  [file sharing instructions](https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&hl=en) .
 
+For more information you can look into the offical FAQ from Google Research. You can find the FAQ under [Colaboratory – Google](https://research.google.com/colaboratory/faq.html) or you can have a look at the introduction video [Get started with Google Colaboratory (Coding TensorFlow) - YouTube](https://www.youtube.com/watch?v=inN8seMm7UI)
 
-* Whst is Google collab 
-	* stats Cpu/Gpu/Tpu Memory
-* What is free 
-* How get started  
-	* create your fist collar
+## Is it free? 
+Yes it is completely free you only need a google account, which probably all of you have. You can use the CPU-,GPU- & TPU-Runtime completely for free. google also offer in some cases the opportunity to extend the runtime and get a 25GB of Memory Runtime completely for free. 
+
+Recently Google Introduced „Colab Pro“ which is a paid version for $9.99/month. With „Colab Pro“ prior access to GPU and TPUs and also higher memory. You can be up to 24 hours connected to your notebooks in comparison in the free version the connection limit is 12h per day. For more information read here: https://colab.research.google.com/signup?utm_source=faq&utm_medium=link&utm_campaign=why_arent_resources_guaranteed 
+## Ressources and Runtimes
+| Type   	| Size                                 	|
+|--------	|--------------------------------------	|
+| CPU    	| 2x                                   	|
+| Memory 	| 12.52GB                              	|
+| GPU    	| T4 with 7,98GB or K80 with 11,97GB  	|
+| TPUv2  	| 8units                               	|
+| Disk   	| atleast 25GB will increase as needed 	|
+# How to use Accelerated Hardware
+Changing Hardware Runtime is as easy it could get. You just have to navigate through „Runtime“ to „change runtime type“ and select your preferred accelerated Hardware GPU or TPU. 
+![change-runtime](./images/change-runtime.gif)
+
+# How to get started
+In the following section i go through a quick tutorial and show the basic functional and some advanced features of google colab. You can find the google colab here.
+	* create your fist colab
 	* create cola from gdrive
 	* Mount drive 
+ [image:3F9EC12D-104C-457E-8AB1-BE179A6FEAEF-2598-000017EB830AF435/1*sQhNUw_YwtFgMowLrCv3Gg.jpeg]
 	* Copy drive 
 	* upload files [Hidden features of Google Colaboratory - Keshav Aggarwal - Medium](https://medium.com/@Keshav31/colab-features-download-and-upload-e1ec537a83df)
 	* chdir 

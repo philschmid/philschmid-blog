@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import mediaqueries from "@styles/media";
+import styled from '@emotion/styled';
+import mediaqueries from '@styles/media';
 
 const StyledTable = styled.table`
   position: relative;
@@ -10,13 +10,14 @@ const StyledTable = styled.table`
   background: ${p => p.theme.colors.card};
   margin: 45px auto 85px;
   width: 100%;
-  max-width: 1004px;
+  max-width: 680px;
   border: 1px solid ${p => p.theme.colors.horizontalRule};
   border-radius: 5px;
   overflow: hidden;
   border-collapse: separate;
 
   ${mediaqueries.desktop`
+    max-width: 507px;
     margin: 25px auto 65px;
   `}
 
@@ -29,9 +30,9 @@ const StyledTable = styled.table`
   `};
 `;
 
-function Table({ children }) {
+function Table({children}) {
   return (
-    <div style={{ overflowX: "auto", padding: "0 20px" }}>
+    <div style={{overflowX: 'auto', padding: '0 20px'}}>
       <StyledTable>{children}</StyledTable>
     </div>
   );

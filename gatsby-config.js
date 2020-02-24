@@ -7,7 +7,7 @@ const siteMetadata = {
   description: `Blog about Machine Learning, Cloud, AWS, GCP, helping People, Code, Share, be helpful`,
   hero: {
     heading: `Articles about Machine Learning and Cloud`,
-    subheading: `think, share and code`,
+    subheading: `think, code and share`,
     maxWidth: 652,
   },
   social: [
