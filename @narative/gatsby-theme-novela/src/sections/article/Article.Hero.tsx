@@ -15,7 +15,6 @@ interface ArticleHeroProps {
 }
 
 const ArticleHero = ({article, authors}: ArticleHeroProps) => {
-  console.log(article);
   const hasCoAUthors = authors.length > 1;
   const hasHeroImage =
     Object.keys(article.hero.full).length !== 0 &&

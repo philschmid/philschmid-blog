@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import mediaqueries from '@styles/media';
 
 const Logo = ({fill = '#fff'}: {fill?: string}) => {
-  console.log(fill);
   return (
     <LogoContainer>
       <svg

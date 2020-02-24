@@ -14,7 +14,6 @@ interface AuthorHeroProps {
 }
 
 const AuthorHero = ({author}: AuthorHeroProps) => {
-  console.log(author);
   return (
     <Hero>
       <HeroImage>

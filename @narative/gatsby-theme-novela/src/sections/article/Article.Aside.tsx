@@ -35,7 +35,7 @@ function Aside({contentHeight, children}: AsideProps) {
   const [shouldFixAside, setShouldFixAside] = useState<boolean>(false);
 
   const show = imageOffset && progress < 145;
-  console.log(progress);
+  //console.log(progress);
   const childrenWithProps = React.Children.map(children, child =>
     React.cloneElement(child, {show}),
   );
