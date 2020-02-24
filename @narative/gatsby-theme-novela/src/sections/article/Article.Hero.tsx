@@ -53,7 +53,7 @@ const Hero = styled.div`
     &::before {
       content: "";
       width: 100%;
-      height: 20px;
+      height: 0px;
       background: ${p.theme.colors.primary};
       position: absolute;
       left: 0;
@@ -107,17 +107,17 @@ const Header = styled.header`
 
   ${mediaqueries.tablet`
     padding-left: 0;
-    margin: 100px auto 70px;
+    margin: 40px auto 70px;
     max-width: 480px;
   `}
 
   ${mediaqueries.phablet`
-    margin: 170px auto 180px;
+    margin: 70px auto 80px;
     padding: 0 40px;
   `}
 
   @media screen and (max-height: 700px) {
-    margin: 100px auto;
+    margin: 50px auto;
   }
 `;
 
