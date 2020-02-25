@@ -14,7 +14,6 @@ const siteMetadata = {
     {
       url: `https://twitter.com/_philschmid`,
     },
-
     {
       url: `https://github.com/philschmid`,
     },
@@ -62,6 +61,8 @@ const plugins = [
         'https://narative.us19.list-manage.com/subscribe/post?u=65ef169332a03669b9538f6ef&amp;id=c55c426282',
     },
   },
+  `gatsby-plugin-sitemap`,
+  `gatsby-plugin-robots-txt`
 ];
 
 /**
@@ -75,14 +76,14 @@ const plugins = [
  * 3. Add .env to www/ (see www/env.example)
  * 4. Enable contentful as a source in this file for @narative/gatsby-theme-novela
  */
-if (process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN) {
-  plugins.push({
-    resolve: 'gatsby-source-contentful',
-    options: {
-      spaceId: process.env.CONTENTFUL_SPACE_ID,
-      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-    },
-  });
+// if (process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN) {
+//   plugins.push({
+//     resolve: 'gatsby-source-contentful',
+//     options: {
+//       spaceId: process.env.CONTENTFUL_SPACE_ID,
+//       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+//     },
+//   });
 }
 
 module.exports = {

@@ -1,0 +1,149 @@
+#aws --profile oseven cloudformation create-stack --stack-name oseven-homepage --template-body file://<(cfn-flip awsInfrastruktur.yml)
+#aws --profile oseven cloudformation update-stack --stack-name oseven-homepage --template-body file://<(cfn-flip awsInfrastruktur.yml)
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Blog By philschmid
+
+Resources:
+  s3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        - Key: app
+          Value: blog
+  s3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref s3Bucket
+      PolicyDocument:
+        # Version: 2012-10-17
+        # Id: PolicyForCloudFrontPrivateContent
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: 'Allow'
+            Resource: !Join ['', [!GetAtt s3Bucket.Arn, /*]]
+            Principal:
+              AWS:
+                !Join [
+                  ' ',
+                  [
+                    arn:aws:iam::cloudfront:user/CloudFront Origin Access
+                    Identity,
+                    !Ref OriginAccessIdentity,
+                  ],
+                ]
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      Tags:
+        - Key: app
+          Value: blog
+      DistributionConfig:
+        Aliases:
+          - philschmid.de
+          - www.philschmid.de
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          Compress: true
+          ForwardedValues:
+            Cookies:
+              Forward: none
+            QueryString: false
+          TargetOriginId: myS3Origin
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+        Enabled: true
+        HttpVersion: http2
+        IPV6Enabled: true
+        Origins:
+          - DomainName: !GetAtt s3Bucket.DomainName
+            Id: myS3Origin
+            OriginPath: /public
+            S3OriginConfig:
+              OriginAccessIdentity:
+                !Join [
+                  '',
+                  [
+                    'origin-access-identity/cloudfront/',
+                    !Ref OriginAccessIdentity,
+                  ],
+                ]
+
+        PriceClass: PriceClass_100
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:403039540759:certificate/38d411c0-7e0b-4476-a3a8-118bc84a4a20
+          MinimumProtocolVersion: TLSv1.1_2016
+          SslSupportMethod: sni-only
+
+  OriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: access-identity-oseven.de.s3.amazonaws.com
+
+  Recordsets:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      Comment: blog wegPage
+      HostedZoneId: Z3340Y06FZ5TQI
+      RecordSets:
+        - Name: philschmid.de
+          Type: A
+          AliasTarget:
+            DNSName: !GetAtt CloudFrontDistribution.DomainName
+            HostedZoneId: Z2FDTNDATAQYW2
+        - Name: philschmid.de
+          Type: AAAA
+          AliasTarget:
+            DNSName: !GetAtt CloudFrontDistribution.DomainName
+            HostedZoneId: Z2FDTNDATAQYW2
+        - Name: www.philschmid.de
+          Type: A
+          # ResourceRecords:
+          #   - oseven.de
+          AliasTarget:
+            DNSName: philschmid.de.
+            HostedZoneId: Z3340Y06FZ5TQI
+
+  CodeBuild:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Location: !Ref s3Bucket
+        Path: public
+        Type: S3
+        Packaging: NONE
+        EncryptionDisabled: true
+        Name: '/'
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:1.0
+        Type: LINUX_CONTAINER
+      Name: Blog by Philipp Schmid
+      ServiceRole: arn:aws:iam::403039540759:role/CodeBuildAdmin
+      Source:
+        Type: GITHUB
+        Location: https://github.com/philschmid/philschmid-blog.git
+      SourceVersion: awsprod
+      QueuedTimeoutInMinutes: 15
+      Tags:
+        - Key: app
+          Value: blog
+      Triggers:
+        Webhook: true
+        FilterGroups:
+          - - Type: EVENT
+              Pattern: PUSH
+            - Type: HEAD_REF
+              Pattern: ^refs/heads/awsprod$
