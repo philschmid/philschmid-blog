@@ -22,9 +22,9 @@ const Logo = ({fill = '#fff'}: {fill?: string}) => {
             id="philschmid_blog"
             data-name="philschmid blog"
             fill="#898989"
-            font-size="30px"
-            font-family="Merriweather-Bold, Merriweather"
-            font-weight="700"
+            fontSize="30px"
+            fontFamily="Merriweather-Bold, Merriweather"
+            fontWeight="700"
             style={{fontSize: 35}}
             transform="translate(-1174 248)"
           >
@@ -35,8 +35,8 @@ const Logo = ({fill = '#fff'}: {fill?: string}) => {
             <tspan
               y="0"
               fill="#898989"
-              font-family="Merriweather-Light, Merriweather"
-              font-weight="300"
+              fontFamily="Merriweather-Light, Merriweather"
+              fontWeight="300"
             >
               blog
             </tspan>
