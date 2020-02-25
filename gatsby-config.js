@@ -62,7 +62,14 @@ const plugins = [
     },
   },
   `gatsby-plugin-sitemap`,
-  `gatsby-plugin-robots-txt`
+  {
+    resolve: 'gatsby-plugin-robots-txt',
+    options: {
+      host: 'https://philschmid.de',
+      sitemap: 'https://philschmid.de/sitemap.xml',
+      policy: [{userAgent: '*', allow: '/'}],
+    },
+  },
 ];
 
 /**
@@ -83,8 +90,8 @@ const plugins = [
 //       spaceId: process.env.CONTENTFUL_SPACE_ID,
 //       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 //     },
-//   });
-}
+// });
+// }
 
 module.exports = {
   siteMetadata,
