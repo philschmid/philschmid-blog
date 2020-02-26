@@ -34,7 +34,7 @@ function Aside({contentHeight, children}: AsideProps) {
   const [imageOffset, setImageOffset] = useState<number>(0);
   const [shouldFixAside, setShouldFixAside] = useState<boolean>(false);
 
-  const show = imageOffset && progress < 145;
+  const show = imageOffset && progress < 105;
   //console.log(progress);
   const childrenWithProps = React.Children.map(children, child =>
     React.cloneElement(child, {show}),
@@ -57,7 +57,7 @@ function Aside({contentHeight, children}: AsideProps) {
 
       const percentComplete = (window.scrollY / contentHeight) * 100;
 
-      setProgress(clamp(+percentComplete.toFixed(2), 0, 145));
+      setProgress(clamp(+percentComplete.toFixed(2), 0, 105));
 
       if (top + window.scrollY < imageOffsetFromTopOfWindow) {
         return setShouldFixAside(false);
