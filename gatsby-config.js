@@ -58,7 +58,7 @@ const plugins = [
     resolve: 'gatsby-plugin-mailchimp',
     options: {
       endpoint:
-        'https://narative.us19.list-manage.com/subscribe/post?u=65ef169332a03669b9538f6ef&amp;id=c55c426282',
+        'https://philschmid.us19.list-manage.com/subscribe/post?u=9dbbfdd84e34132c1147d9db9&amp;id=a10a54e23e',
     },
   },
   `gatsby-plugin-sitemap`,
