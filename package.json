@@ -19,10 +19,13 @@
     "gatsby-plugin-manifest": "^2.2.4",
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sitemap": "^2.2.27",
+    "gatsby-remark-katex": "^3.1.24",
     "gatsby-source-filesystem": "^2.1.9",
+    "katex": "^0.11.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-ga": "^2.7.0"
+    "react-ga": "^2.7.0",
+    "remark-html-katex": "^2.0.0"
   },
   "devDependencies": {
     "ngrok": "^3.2.7"

@@ -1,0 +1,81 @@
+---
+title: Getting started with CNN by calculating MNIST manually
+author: Philipp Schmid
+date: 2020-02-28
+hero: ./cover.jpeg
+excerpt: A getting started explanation to CNN by calculating Yann LeCun LeNet-5 manually for handwritten digits.
+tag: Machine Learning
+---
+Refrence: [4 CNN Networks Every Machine Learning Engineer Should Know!](https://medium.com/ml-cheat-sheet/4-cnn-networks-every-machine-learning-engineer-should-know-e9c62408fd76)
+[6.5. Pooling — Dive into Deep Learning 0.7.1 documentation](https://d2l.ai/chapter_convolutional-neural-networks/pooling.html)
+[conv_arithmetic/README.md at master · vdumoulin/conv_arithmetic · GitHub](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md)
+# Introduction
+The idea of CNNs is to reduce dimension until you have a 1 dimensional tensor. To achieve this convolutional layer and pooling layer are used. Convolutional layer are reducing the dimensions by adding filters (kernel windows) to the Input. The dimension can reduce by applying kernel windows to calculate new outputs. Assuming the input shape is $$n_{h} x n_{w}$$ and the kernel window ist $$k_{h} x k_{w}$$ then the output shape will be. 
+$$
+(n_{h} - k _{h}+1 )\ x\ (n_{w} - k_{w}+1 )
+$$.
+Pooling Layers are reducing the dimension by aggregating the input elements. Assuming the input shape is $$n_{h} x n_{w}$$ and the pooling method is average with a kernel window of $$k_{h} x k_{w}$$ then the output shape will be  
+$$\frac{1}{p_{h}*p_{w}}\sum n_{1}+n_{2} ...+n_{h*w}$$ .
+## Example CNNs Architecture LeNet-5
+![lenet-5-architecture](./images/lenet-5.png)
+This is the architecture of LeNet-5 created by **Yann LeCun** in 1998 and widely used for written digits recognition(MNIST).
+
+To understand what is happening in each layer we have to clarify a few basics. Lets start with Stride and Padding
+
+# Stride and Padding
+As described in the introduction the goal of a CNNs is to reduce the dimension by applying layer. A tricky part of reducing dimensions is not to erase informations from the original input, for example if you have an input of 100 x 100 and apply 5 layer of 5 x 5 you reduce the size of dimension to 80 x 80 or you erase 20% in 5 layers. This is where Stride and Padding can be helpful.
+
+## Padding
+You can define padding as adding extra pixels as filler around the orignal input to decrease the erasion of informations.
+
+[image:8CD97F75-3F35-4D1E-996E-D3B614C00C37-24230-00007D1CB1ACEA24/padding1.png]
+Example of adding p (1x1) to an input.
+If we add padding to our input the formula for calculating the output changes to
+$$(n_{h} - k _{h}+p_{h}+1 )\ x \ n_{w} - k_{w}+p_{w}+1 )$$ .
+if we now add a 1x1 padding to our 100 x 100 input example the reduction of the dimension changes to 85 x 85.
+## Stride
+When calculating inputs with kernel window you start at the top-left corner of the input and then slide it over all location from left to right and top to bottom. The default behavior is sliding by one at a time. The problem of sliding by one can sometimes result in computational unefficency for example, if you have an 4k input image you don’t want to calculate and slide by one. To optimize this we can slide by more than one to downsample our output. This sliding is called *stride*. 
+[image:C1BBFE15-5055-409F-AD5C-6E27BECD6B5E-24230-00007ECA946A43FC/stride1.png]
+[image:8FC2F0F8-3D6D-4176-8099-775C0095CC24-24230-00007ECA94AB07EF/stride2.png]
+If we add stride to our input the formula for calculating the output changes to
+$$(n_{h} - k _{h}+p_{h}+s_{h})/s_{h}\ x \ n_{w} - k_{w}+p_{w}+/s_{w} )/s_{w}$$ .
+if we now add a 2x2 stride to our 100 x 100 input example with padding and apply only 1 layer the reduction of the dimension changes to 49 x 49.
+_If you have stride of 0 or None just means having a stride of 1._
+
+## Calculating CNN Layers for LeNet-5 
+$$n=dimension\ of\ Tensor$$
+p=padding (32x32 by p=2 => 26x26)
+f=filter size
+s=stride
+Nc= number of filters
+### General formular
+(n +2p -f )/ s +1 x (n +2p -f )/ s +1 x Nc
+### MNIST Example @ LeNet-5
+In MNIST we have Images with the Size of 32x32x1. In the LeNet-5 in the first Layer are 6 5x5 filters applied with a stride of 1.  This results in the following variables:
+n=32
+p=0
+f=5
+s=1
+Nc=6
+
+(32+(2*0)-5)/1+1 x (32+(2*0)-5)/1+1 x 6
+===
+28 x 28 x 6
+## Calculating Pooling Layer
+Pooling layer are used to reduce the dimension of input tensors. Pooling layer are reducing the dimension by aggregating information. Pooling layer don’t have parameter like Convolutional layer do. Pooling operators are deterministic (all events - especially future ones - are clearly defined by preconditions).  Typically Pooling layer are calculating either the maximum (Max Pooling Layer) or the average (Average Pooling Layer) value of the elements in the pooling window. A Pooling window is normally a 2x2 cutout from your input. The size of t he pooling window can be tuned, but in most cases it is 2x2 or 3x3. —_Pooling with a pooling window of 2x2 is called 2d Pooling and with a pooling window of 3x3 it is called 3d Pooling._ —
+_X x Y => X is vertikal and Y is horizontal_
+Pooling Window: 2x2
+[image:8D2EB877-AAC6-41E7-9F77-C4598D39473E-24230-000074C3947147E4/Pooling Window.png]
+ Pooling Window: 2x3 
+[image:BF22B160-D005-4E37-8626-54A9A3B38CD9-24230-0000750ED443FB07/pooling window 2x3.png]
+
+### Average 2d Pooling Layer
+Average Pooling is calculating the mean of the given input. It is calculating the Sum of all elements and dividing it by the size of the pooling window. 
+[image:C0D2C3A9-565B-4C2E-98CB-0A1C302F5A39-24230-000076ABA71FA829/Average Pooling.png]
+
+
+### Max 2d Pooling Layer
+Max Pooling is extracting the maximum number of the given input. It is comparing each element and extracting the element with the highest value. 
+[image:295E2569-9C0B-47A0-B078-D4B97938B498-24230-000076AC586BC097/Maximum Pooling.png]
+
+## 1d , 2d 3d Pooling
