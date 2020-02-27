@@ -10,7 +10,6 @@ import ArticlesContextProvider from '../../sections/articles/Articles.List.Conte
 
 import {globalStyles} from '@styles';
 import Dialog from '../Dialog';
-import 'katex/dist/katex.min.css';
 
 interface LayoutProps {
   children: React.ReactChild;

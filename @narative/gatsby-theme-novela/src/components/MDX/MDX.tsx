@@ -1,24 +1,25 @@
-import React from "react";
+import React from 'react';
 
-import { MDXRenderer } from "gatsby-plugin-mdx";
-import { MDXProvider } from "@mdx-js/react";
+import {MDXRenderer} from 'gatsby-plugin-mdx';
+import {MDXProvider} from '@mdx-js/react';
 
-import styled from "@emotion/styled";
-import { css } from "@emotion/core";
-import { useColorMode } from "theme-ui";
+import styled from '@emotion/styled';
+import {css} from '@emotion/core';
+import {useColorMode} from 'theme-ui';
 
-import Anchor from "@components/Anchor";
-import Blockquote from "@components/Blockquote";
-import Code from "@components/Code";
-import Headings from "@components/Headings";
-import HorizontalRule from "@components/HorizontalRule";
-import Lists from "@components/Lists";
-import Paragraph from "@components/Paragraph";
-import Tables from "@components/Tables";
-import { ImageZoom } from "@components/Image";
+import Anchor from '@components/Anchor';
+import Blockquote from '@components/Blockquote';
+import Code from '@components/Code';
+import Headings from '@components/Headings';
+import HorizontalRule from '@components/HorizontalRule';
+import Lists from '@components/Lists';
+import Paragraph from '@components/Paragraph';
+import Span from '@components/Paragraph/Span';
+import Tables from '@components/Tables';
+import {ImageZoom} from '@components/Image';
 
-import mediaqueries from "@styles/media";
-import { toKebabCase } from "@utils";
+import mediaqueries from '@styles/media';
+import {toKebabCase} from '@utils';
 
 const components = {
   img: ImageZoom,
@@ -34,21 +35,22 @@ const components = {
   ul: Lists.ul,
   ol: Lists.ol,
   p: Paragraph,
+  span: Span,
   code: Code.Prism,
   pre: Code.Pre,
   table: Tables.Table,
   thead: Tables.Head,
   th: Tables.HeadCell,
-  td: Tables.Cell
+  td: Tables.Cell,
 };
 
-function MDX({ content, children, ...props }) {
+function MDX({content, children, ...props}) {
   const [colorMode] = useColorMode();
 
   return (
     <MDXProvider components={components}>
       <MDXBody>
-        <MDXRenderer isDark={colorMode === "dark"} {...props}>
+        <MDXRenderer isDark={colorMode === 'dark'} {...props}>
           {content}
         </MDXRenderer>
         {children}
@@ -60,9 +62,9 @@ function MDX({ content, children, ...props }) {
 export default MDX;
 
 const IMAGE_WIDTHS = {
-  regular: "680px",
-  large: "1004px",
-  full: "100vw"
+  regular: '680px',
+  large: '1004px',
+  full: '100vw',
 };
 
 const ARTICLE_WIDTH = css`
