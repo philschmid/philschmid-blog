@@ -81,7 +81,7 @@ function ArticleSEO({
       title={article.title}
       description={article.excerpt}
       image={article.hero.seo.src}
-      timeToRead={article.timeToRead}
+      timeToRead={Math.round(article.timeToRead * 1.8)}
       published={article.date}
       pathname={location.href}
     >

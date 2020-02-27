@@ -110,7 +110,7 @@ const ListItem = ({article, narrow}: ArticlesListItemProps) => {
             {article.excerpt}
           </Excerpt>
           <MetaData>
-            {article.date} · {article.timeToRead} min read
+            {article.date} · {Math.round(article.timeToRead * 1.8)} min read
           </MetaData>
         </div>
       </Item>

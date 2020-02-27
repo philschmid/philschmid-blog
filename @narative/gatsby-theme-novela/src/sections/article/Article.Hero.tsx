@@ -27,7 +27,7 @@ const ArticleHero = ({article, authors}: ArticleHeroProps) => {
         <HeroSubtitle hasCoAUthors={hasCoAUthors}>
           <ArticleAuthors authors={authors} />
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
-            {article.date} · {article.timeToRead} min read
+            {article.date} · {Math.round(article.timeToRead * 1.8)} min read
           </ArticleMeta>
           <ArticleTag>#{article.tag}</ArticleTag>
         </HeroSubtitle>
