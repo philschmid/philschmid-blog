@@ -8,7 +8,7 @@ tag: Machine Learning
 photograph: Photo by pine watt on Unsplash
 ---
 # Introduction
-The idea of CNNs to intelligently adapt to the properties of images by reducing the dimension. To achieve this convolutional layer and pooling layer are used. Convolutional layers are reducing the dimensions by adding filters (kernel windows) to the Input. The dimension can reduce by applying kernel windows to calculate new outputs. Assuming the input shape is $$n_{h} x n_{w}$$ and the kernel window ist $$k_{h} x k_{w}$$ then the output shape will be.  
+The idea of CNNs is intelligently adapt to the properties of images by reducing the dimension. To achieve this convolutional layer and pooling layer are used. Convolutional layers are reducing the dimensions by adding filters (kernel windows) to the Input. The dimension can reduce by applying kernel windows to calculate new outputs. Assuming the input shape is $$n_{h} x n_{w}$$ and the kernel window ist $$k_{h} x k_{w}$$ then the output shape will be.  
 $$
 (n_{h} - k _{h}+1 )\ x\ (n_{w} - k_{w}+1 )
 $$  
@@ -20,7 +20,7 @@ The Explanation for $$p$$ and $$s$$ will follow in the section of Stride and Pad
 
 ## Example CNNs Architecture LeNet-5
 ![lenet-5-architecture](./images/lenet-5.svg)
-This is the architecture of LeNet-5 created by **Yann LeCun** in 1998 and widely used for written digits recognition(MNIST).
+This is the architecture of LeNet-5 created by **Yann LeCun** in 1998 and widely used for written digits recognition (MNIST).
 
 To understand what is happening in each layer we have to clarify a few basics. Let’s start with Stride and Padding
 
@@ -85,10 +85,10 @@ $$
 (n_{h} +2p_{h}-f_{h})/ s_{h} +1\ x\ (n_{w} +2p_{w} -f_{w})/ s_{w} +1\ x\ Nc
 $$
 ### Variable definiton
-$$n=dimension\ of\ input-tensor$$
-$$p=padding\ (32x32\ by\ p=1\ \rightarrow\ 34x34)$$
-$$f= filter\ size$$
-$$Nc = number\ of\ filters $$
+$$n=dimension\ of\ input-tensor$$  
+$$p=padding\ (32x32\ by\ p=1\ \rightarrow\ 34x34)$$  
+$$f= filter\ size$$  
+$$Nc = number\ of\ filters $$  
 
 The LeNet-5 was trained with Images of the Size of 32x32x1. The first Layer are 6 5x5 filters applied with a stride of 1.  This results in the following variables:
 ### Calculating first layer
@@ -124,7 +124,7 @@ $$
 (28- 2 +0+2)/2\ x\ (28 - 2 +0+2)/2\ x\ 6 == \ 14\ x\ 14\ x\ 6
 $$
 
-The calculation can now be done analogously for the remaining layers until the last layer before you would reached 1x1xX output-layer. Afterward you use FC-Layers and the softmax for your classification.
+The calculation can now be done analogously for the remaining layers until the last layer before you would reached 1x1xX output-layer. Afterward you use FC-Layers and softmax for your classification.
  
 ---
 Refrence:  
