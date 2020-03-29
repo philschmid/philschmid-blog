@@ -3,13 +3,13 @@ on:
   push:
     branches: [master]
     paths:
-    - 'content/**'
+      - 'content/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      AWS_S3_BUCKET_NAME: your-bucket-name
-      AWS_CF_DISTRIBUTION_ID: your-cloudfront-id
+      AWS_S3_BUCKET_NAME: blog-s3bucket-x8rtgbq6xaci
+      AWS_CF_DISTRIBUTION_ID: E142JX8EI0E837
     strategy:
       matrix:
         node-version: [10.x]
@@ -31,13 +31,14 @@ jobs:
           AWS_S3_BUCKET: ${{ env.AWS_S3_BUCKET_NAME }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "eu-central-1"
-          SOURCE_DIR: "dist"
+          AWS_REGION: 'eu-central-1'
+          SOURCE_DIR: public
+          DEST_DIR: public
       - name: Create CloudFront Cache Invalidation
         uses: chetan/invalidate-cloudfront-action@master
         env:
           DISTRIBUTION: ${{ env.AWS_CF_DISTRIBUTION_ID }}
-          PATHS: "/*"
-          AWS_REGION: "eu-central-1"
+          PATHS: '/*'
+          AWS_REGION: 'eu-central-1'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

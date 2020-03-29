@@ -4,7 +4,7 @@
   "version": "1.3.3",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./public &&gatsby build ",
+    "build": "rm -rf ./public && gatsby build ",
     "develop": "rm -rf .cache && gatsby develop",
     "clean": "gatsby clean",
     "start": "yarn develop",
