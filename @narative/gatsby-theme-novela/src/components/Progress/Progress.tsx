@@ -15,10 +15,10 @@ function Progress({contentHeight}: IProgress) {
     const handleScroll = throttle(() => {
       const percentComplete = (window.scrollY / contentHeight) * 100;
 
-      setProgress(clamp(+percentComplete.toFixed(2), -2, 104));
+      setProgress(clamp(+percentComplete.toFixed(2), -2, 105));
     }, 20);
 
-    if (contentHeight) {
+    if (contentHeight + 100) {
       window.addEventListener('scroll', handleScroll);
       window.addEventListener('resize', handleScroll);
       return () => {
@@ -31,7 +31,7 @@ function Progress({contentHeight}: IProgress) {
   return (
     <ProgressContainer tabIndex={-1}>
       <Trackline aria-hidden="true">
-        <ProgressLine style={{transform: `translateY(${progress}%)`}} />
+        <ProgressLine style={{transform: `translateY(${progress * 0.95}%)`}} />
       </Trackline>
     </ProgressContainer>
   );

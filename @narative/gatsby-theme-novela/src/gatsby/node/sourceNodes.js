@@ -1,4 +1,4 @@
-module.exports = ({ actions }) => {
+module.exports = ({actions}) => {
   actions.createTypes(`
     type Article implements Node {
       id: ID!
@@ -7,6 +7,8 @@ module.exports = ({ actions }) => {
       date: Date! @dateformat
       author: String!
       excerpt(pruneLength: Int = 140): String!
+      tag: String
+      photograph: String
       body: String!
       hero: File @fileByRelativePath
       timeToRead: Int

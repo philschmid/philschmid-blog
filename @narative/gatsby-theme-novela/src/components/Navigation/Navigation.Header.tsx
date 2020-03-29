@@ -59,18 +59,18 @@ function NavigationHeader() {
           data-a11y="false"
           title="Navigate back to the homepage"
           aria-label="Navigate back to the homepage"
-          back={showBackArrow ? 'true' : 'false'}
+          back={'false'}
         >
-          {showBackArrow && (
+          {/* {showBackArrow && (
             <BackArrowIconContainer>
               <Icons.ChevronLeft fill={fill} />
             </BackArrowIconContainer>
-          )}
+          )} */}
           <Logo fill={fill} />
-          <Hidden>Navigate back to the homepage</Hidden>
+          {/* <Hidden>Navigate back to the homepage</Hidden> */}
         </LogoLink>
         <NavControls>
-          {showBackArrow ? (
+          {/* {showBackArrow ? (
             <button
               onClick={() => navigate(previousPath)}
               title="Navigate back to the homepage"
@@ -78,15 +78,15 @@ function NavigationHeader() {
             >
               <Icons.Ex fill={fill} />
             </button>
-          ) : (
-            <>
-              <SearchIconButton />
-              <AuthorIconButton />
-              <EmailIconButton />
-              <SharePageButton />
-              <DarkModeToggle />
-            </>
-          )}
+          ) : ( */}
+          <>
+            <SearchIconButton />
+            <AuthorIconButton />
+            <EmailIconButton />
+            <SharePageButton />
+            <DarkModeToggle />
+          </>
+          {/* )} */}
         </NavControls>
       </NavContainer>
     </Section>

@@ -1,4 +1,5 @@
 /* eslint-disable */
+const ReactGA = require('react-ga');
 
 function handleAccessibilityFocus() {
   const elementsWithA11yFocus = [...document.querySelectorAll('[data-a11y]')];
@@ -23,10 +24,15 @@ function handleAccessibilityFocus() {
   });
 }
 
-module.exports = ({ prevLocation }) => {
+module.exports = ({location, prevLocation}) => {
   handleAccessibilityFocus();
-
+  ReactGA.pageview(location.pathname);
   if (prevLocation) {
     localStorage.setItem('previousPath', prevLocation.pathname);
   }
+  // ReactGA.initialize('UA-xxxxxx-x');
+
+  // exports.onRouteUpdate = (state, page, pages) => {
+  //   ReactGA.pageview(state.pathname);
+  // };
 };

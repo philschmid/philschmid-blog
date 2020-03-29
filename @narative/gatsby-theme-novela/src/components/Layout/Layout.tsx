@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {Global} from '@emotion/core';
 import styled from '@emotion/styled';
 import {useColorMode} from 'theme-ui';
+import {useLocalStorage} from '../../hooks/localStorage';
 
 import NavigationFooter from '@components/Navigation/Navigation.Footer';
 import NavigationHeader from '@components/Navigation/Navigation.Header';
@@ -25,12 +26,12 @@ function Layout({children}: LayoutProps) {
   useEffect(() => {
     parent.postMessage({theme: colorMode}, '*');
   }, [colorMode]);
-
   return (
     <ArticlesContextProvider>
       <Container>
         <Global styles={globalStyles} />
-        <Dialog />
+        {useLocalStorage('Privacy') ? null : <Dialog />}
+
         <NavigationHeader />
         {children}
         <NavigationFooter />

@@ -7,7 +7,7 @@ export default {
   secondary: '#73737D',
   grey: '#73737D',
   background: '#fafafa',
-  accent: '#3444f1',
+  accent: '#21947F  ',
   hover: 'rgba(0, 0, 0, 0.07)',
   gradient: 'linear-gradient(180deg, rgba(217, 219, 224, 0) 0%, #D9DBE0 100%)',
   articleText: '#08080B',
@@ -21,10 +21,10 @@ export default {
   inputBackground: 'rgba(0, 0, 0, 0.05)',
   modes: {
     dark: {
-      grey: '#73737D',
+      grey: '#9494A1',
       primary: '#fff',
       secondary: '#fff',
-      accent: '#E9DAAC',
+      accent: '#36F1CF',
       background: '#111216',
       hover: 'rgba(255, 255, 255, 0.07)',
       gradient:

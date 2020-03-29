@@ -6,10 +6,18 @@ import Headings from '@components/Headings';
 import {useLocalStorage} from '../../hooks/localStorage';
 import styled from '@emotion/styled';
 import mediaqueries from '@styles/media';
+import ReactGA from 'react-ga';
 
 const Dialog: React.FunctionComponent<{}> = (props: any) => {
-  const [state, setState]: any = useLocalStorage('Privacy', null);
-
+  const [state, setState]: any = useState(false);
+  React.useEffect(() => {
+    // Update the document title using the browser API
+    const loadStorage = async () => {
+      const storage = await useLocalStorage('Privacy');
+      setState(storage);
+    };
+    loadStorage();
+  }, [state]);
   return state !== null ? null : (
     <DialogContainer>
       <SubscriptionContainer>
@@ -21,16 +29,18 @@ const Dialog: React.FunctionComponent<{}> = (props: any) => {
           </Text>
           <Button
             onClick={params => {
+              useLocalStorage('Privacy', true);
               setState(true);
+              ReactGA.initialize('UA-154999168-1');
+              ReactGA.set({anonymizeIp: true});
             }}
           >
             Accept
           </Button>
           <Button
             onClick={params => {
+              useLocalStorage('Privacy', false);
               setState(true);
-
-              // localStorage.setItem('Privacy', 'false');
             }}
           >
             Decline

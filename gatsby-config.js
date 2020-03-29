@@ -3,22 +3,22 @@ require('dotenv').config();
 const siteMetadata = {
   title: `Blog by Philipp Schmid`,
   name: `philschmid`,
-  siteUrl: `https://novela.narative.co`,
+  siteUrl: `https://philschmid.de`,
   description: `Blog about Machine Learning, Cloud, AWS, GCP, helping People, Code, Share, be helpful`,
   hero: {
-    heading: `Welcome, you can read Articles about Machine Learning and Cloud.`,
+    heading: `Articles about Machine Learning and Cloud`,
+    subheading: `think, code and share`,
     maxWidth: 652,
   },
   social: [
     {
       url: `https://twitter.com/_philschmid`,
     },
-
     {
       url: `https://github.com/philschmid`,
     },
     {
-      url: `https://instagram.com/narative.co`,
+      url: `https://instagram.com/schmid_philipp`,
     },
     {
       url: `https://www.linkedin.com/in/philipp-schmid-a6a2bb196/`,
@@ -28,7 +28,7 @@ const siteMetadata = {
 
 const plugins = [
   {
-    resolve: '@narative/gatsby-theme-novela',
+    resolve: require.resolve(`./@narative/gatsby-theme-novela`),
     options: {
       contentPosts: 'content/posts',
       contentAuthors: 'content/authors',
@@ -58,7 +58,16 @@ const plugins = [
     resolve: 'gatsby-plugin-mailchimp',
     options: {
       endpoint:
-        'https://narative.us19.list-manage.com/subscribe/post?u=65ef169332a03669b9538f6ef&amp;id=c55c426282',
+        'https://philschmid.us19.list-manage.com/subscribe/post?u=9dbbfdd84e34132c1147d9db9&amp;id=a10a54e23e',
+    },
+  },
+  `gatsby-plugin-sitemap`,
+  {
+    resolve: 'gatsby-plugin-robots-txt',
+    options: {
+      host: 'https://philschmid.de',
+      sitemap: 'https://philschmid.de/sitemap.xml',
+      policy: [{userAgent: '*', allow: '/'}],
     },
   },
 ];
@@ -74,15 +83,15 @@ const plugins = [
  * 3. Add .env to www/ (see www/env.example)
  * 4. Enable contentful as a source in this file for @narative/gatsby-theme-novela
  */
-if (process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN) {
-  plugins.push({
-    resolve: 'gatsby-source-contentful',
-    options: {
-      spaceId: process.env.CONTENTFUL_SPACE_ID,
-      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-    },
-  });
-}
+// if (process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN) {
+//   plugins.push({
+//     resolve: 'gatsby-source-contentful',
+//     options: {
+//       spaceId: process.env.CONTENTFUL_SPACE_ID,
+//       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+//     },
+// });
+// }
 
 module.exports = {
   siteMetadata,
