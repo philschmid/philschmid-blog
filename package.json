@@ -9,8 +9,7 @@
     "clean": "gatsby clean",
     "start": "yarn develop",
     "serve": "gatsby serve",
-    "deploy": "aws --profile philipp s3 rm  s3://blog-s3bucket-x8rtgbq6xaci --recursive && aws --profile philipp s3 sync  public/  s3://blog-s3bucket-x8rtgbq6xaci",
-    "deploy:test": " aws --profile philipp s3 sync  public/  s3://philschmid-blog-dcuix7t1hv"
+    "deploy": "aws --profile philipp s3 rm  s3://blog-s3bucket-x8rtgbq6xaci --recursive && aws --profile philipp s3 sync  public/  s3://blog-s3bucket-x8rtgbq6xaci"
   },
   "dependencies": {
     "@narative/gatsby-theme-novela": "0.9.2",
