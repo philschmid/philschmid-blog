@@ -8,8 +8,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      AWS_S3_BUCKET_NAME: blog-s3bucket-x8rtgbq6xaci
-      AWS_CF_DISTRIBUTION_ID: E142JX8EI0E837
+      AWS_S3_BUCKET_NAME: philschmid-blog-dcuix7t1hv
+      AWS_CF_DISTRIBUTION_ID: E1ZRC9R5Y0LLL0
     strategy:
       matrix:
         node-version: [10.x]
