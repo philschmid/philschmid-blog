@@ -11,9 +11,9 @@ export default () => {
   return (
     <Layout>
       <SEO
-        pathname={'imprint'}
-        title={'Imprint'}
-        description={'Imprint of my blog'}
+        pathname={'404'}
+        title={'404 - Error'}
+        description={'404 Not Found Page'}
       />
       <Section narrow style={{textAlign: 'center'}}>
         <br />

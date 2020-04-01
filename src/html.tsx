@@ -11,7 +11,7 @@ export default props => (
       />
       <script
         dangerouslySetInnerHTML={{
-          __html: `document.domain = "philschmid-blog.com"`,
+          __html: `document.domain = "www.philschmid.de"`,
         }}
       />
       {props.headComponents}
