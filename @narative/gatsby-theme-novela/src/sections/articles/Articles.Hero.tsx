@@ -36,7 +36,7 @@ function ArticlesHero({authors}: IAuthor) {
   const results = useStaticQuery(authorQuery);
   const hero = results.site.edges[0].node.siteMetadata.hero;
   const tilesIsActive = hasSetGridLayout && gridLayout === 'tiles';
-  const featuredAuthor = authors.find(author => author.featured);
+  const featuredAuthor = authors.find((author) => author.featured);
 
   if (!featuredAuthor) {
     throw new Error(`
@@ -84,14 +84,14 @@ const SubheadingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 
   ${mediaqueries.desktop`
-    margin-bottom: 80px;
+    margin-bottom: 50px;
   `};
 
   ${mediaqueries.tablet`
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   `};
 
   ${mediaqueries.phablet`
@@ -109,7 +109,7 @@ const GridControlsContainer = styled.div`
 `;
 
 const HeadingContainer = styled.div`
-  margin: 100px 0;
+  margin: 50px 0 25px 0;
 
   ${mediaqueries.desktop`
     width: 80%;
@@ -129,16 +129,16 @@ const HeadingContainer = styled.div`
 
 const HeroHeading = styled.h1`
   font-style: normal;
-  font-family: ${p => p.theme.fonts.serif};
+  font-family: ${(p) => p.theme.fonts.serif};
 
   font-weight: 600;
   font-size: 52px;
 
   line-height: 1.15;
-  color: ${p => p.theme.colors.primary};
+  color: ${(p) => p.theme.colors.primary};
 
   a {
-    color: ${p => p.theme.colors.accent};
+    color: ${(p) => p.theme.colors.accent};
   }
 
   ${mediaqueries.desktop`
@@ -152,13 +152,13 @@ const HeroHeading = styled.h1`
 
 const HeroSubHeading = styled.h2`
   font-style: normal;
-  font-family: ${p => p.theme.fonts.serif};
+  font-family: ${(p) => p.theme.fonts.serif};
   margin-top: 20px;
   font-weight: 400;
   font-size: 32px;
 
   line-height: 1.15;
-  color: ${p => p.theme.colors.grey};
+  color: ${(p) => p.theme.colors.grey};
 
   ${mediaqueries.desktop`
     font-size: 28px
@@ -189,7 +189,7 @@ const GridButton = styled.button<{active: boolean}>`
   }
 
   &:hover {
-    background: ${p => p.theme.colors.hover};
+    background: ${(p) => p.theme.colors.hover};
   }
 
   &[data-a11y='true']:focus::after {
@@ -199,17 +199,17 @@ const GridButton = styled.button<{active: boolean}>`
     top: -10%;
     width: 120%;
     height: 120%;
-    border: 2px solid ${p => p.theme.colors.accent};
+    border: 2px solid ${(p) => p.theme.colors.accent};
     background: rgba(255, 255, 255, 0.01);
     border-radius: 50%;
   }
 
   svg {
-    opacity: ${p => (p.active ? 1 : 0.25)};
+    opacity: ${(p) => (p.active ? 1 : 0.25)};
     transition: opacity 0.2s;
 
     path {
-      fill: ${p => p.theme.colors.primary};
+      fill: ${(p) => p.theme.colors.primary};
     }
   }
 `;
