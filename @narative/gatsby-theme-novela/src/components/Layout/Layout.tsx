@@ -30,7 +30,7 @@ function Layout({children}: LayoutProps) {
     <ArticlesContextProvider>
       <Container>
         <Global styles={globalStyles} />
-        {useLocalStorage('Privacy') ? null : <Dialog />}
+        {/* {useLocalStorage('Privacy') ? null : <Dialog />} */}
 
         <NavigationHeader />
         {children}
@@ -44,7 +44,7 @@ export default Layout;
 
 const Container = styled.div`
   position: relative;
-  background: ${p => p.theme.colors.background};
-  transition: ${p => p.theme.colorModeTransition};
+  background: ${(p) => p.theme.colors.background};
+  transition: ${(p) => p.theme.colorModeTransition};
   min-height: 100vh;
 `;
