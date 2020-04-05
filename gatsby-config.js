@@ -3,7 +3,7 @@ require('dotenv').config();
 const siteMetadata = {
   title: `Blog by Philipp Schmid`,
   name: `philschmid`,
-  siteUrl: `https://philschmid.de`,
+  siteUrl: `https://www.philschmid.de`,
   description: `Blog about Machine Learning, Cloud, AWS, GCP, helping People, Code, Share, be helpful`,
   hero: {
     heading: `Articles about Machine Learning and Cloud`,
@@ -65,8 +65,8 @@ const plugins = [
   {
     resolve: 'gatsby-plugin-robots-txt',
     options: {
-      host: 'https://philschmid.de',
-      sitemap: 'https://philschmid.de/sitemap.xml',
+      host: 'https://www.philschmid.de',
+      sitemap: 'https://www.philschmid.de/sitemap.xml',
       policy: [{userAgent: '*', allow: '/'}],
     },
   },
