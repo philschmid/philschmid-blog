@@ -57,23 +57,22 @@ module.exports = ({
             serialize: ({query: {site, allArticle, allContentfulPost}}) => {
               if (local && !contentful) {
                 return allArticle.edges
-                  .filter(edge => !edge.node.secret)
-                  .map(edge => {
+                  .filter((edge) => !edge.node.secret)
+                  .map((edge) => {
                     return {
                       ...edge.node,
                       description: edge.node.excerpt,
                       date: edge.node.date,
                       url: site.siteMetadata.siteUrl + edge.node.slug,
                       guid: site.siteMetadata.siteUrl + edge.node.slug,
-                      tag: 'test',
                       // custom_elements: [{ "content:encoded": edge.node.body }],
                       author: edge.node.author,
                     };
                   });
               } else if (!local && contentful) {
                 return allContentfulPost.edges
-                  .filter(edge => !edge.node.secret)
-                  .map(edge => {
+                  .filter((edge) => !edge.node.secret)
+                  .map((edge) => {
                     return {
                       ...edge.node,
                       description: edge.node.excerpt,
@@ -87,12 +86,11 @@ module.exports = ({
               } else {
                 const allArticlesData = {...allArticle, ...allContentfulPost};
                 return allArticlesData.edges
-                  .filter(edge => !edge.node.secret)
-                  .map(edge => {
+                  .filter((edge) => !edge.node.secret)
+                  .map((edge) => {
                     return {
                       ...edge.node,
                       description: edge.node.excerpt,
-                      tag: 'test',
                       date: edge.node.date,
                       url: site.siteMetadata.siteUrl + edge.node.slug,
                       guid: site.siteMetadata.siteUrl + edge.node.slug,

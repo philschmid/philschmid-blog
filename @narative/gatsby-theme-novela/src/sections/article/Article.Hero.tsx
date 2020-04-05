@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import styled from '@emotion/styled';
 
 import Headings from '@components/Headings';
@@ -29,7 +29,9 @@ const ArticleHero = ({article, authors}: ArticleHeroProps) => {
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
             {article.date} · {Math.round(article.timeToRead * 1.8)} min read
           </ArticleMeta>
-          <ArticleTag>#{article.tag}</ArticleTag>
+          {article.tag.map((tag) => (
+            <ArticleTag>#{tag} </ArticleTag>
+          ))}
         </HeroSubtitle>
       </Header>
       <HeroImage id="ArticleImage__Hero">
@@ -49,7 +51,7 @@ const ArticleHero = ({article, authors}: ArticleHeroProps) => {
 export default ArticleHero;
 
 const Hero = styled.div`
-  ${p => mediaqueries.phablet`
+  ${(p) => mediaqueries.phablet`
     &::before {
       content: "";
       width: 100%;
@@ -77,7 +79,7 @@ const Hero = styled.div`
 `;
 
 const ArticleMeta = styled.div<{hasCoAUthors: boolean}>`
-  margin-left: ${p => (p.hasCoAUthors ? '10px' : '0')};
+  margin-left: ${(p) => (p.hasCoAUthors ? '10px' : '0')};
 
   ${mediaqueries.phablet`
     margin-left: 0;
@@ -85,7 +87,7 @@ const ArticleMeta = styled.div<{hasCoAUthors: boolean}>`
 `;
 const ArticleTag = styled.div`
   margin-left: 10px;
-  color: ${p => p.theme.colors.accent};
+  color: ${(p) => p.theme.colors.accent};
 
   ${mediaqueries.phablet`
     margin-left: 0;
@@ -123,7 +125,7 @@ const Header = styled.header`
 
 const HeroHeading = styled(Headings.h1)`
   font-size: 48px;
-  font-family: ${p => p.theme.fonts.serif};
+  font-family: ${(p) => p.theme.fonts.serif};
   margin-bottom: 25px;
   font-weight: bold;
   line-height: 1.32;
@@ -139,13 +141,14 @@ const HeroSubtitle = styled.div<{hasCoAUthors: boolean}>`
   position: relative;
   display: flex;
   font-size: 18px;
-  color: ${p => p.theme.colors.grey};
+  color: ${(p) => p.theme.colors.grey};
 
-  ${p => mediaqueries.phablet`
+  ${(p) => mediaqueries.phablet`
     font-size: 14px;
     flex-direction: column;
 
-    ${p.hasCoAUthors &&
+    ${
+      p.hasCoAUthors &&
       `
         &::before {
           content: '';
@@ -158,7 +161,8 @@ const HeroSubtitle = styled.div<{hasCoAUthors: boolean}>`
           opacity: 0.5;
           border-radius: 5px;
         }
-    `}
+    `
+    }
 
 
     strong {
@@ -172,9 +176,9 @@ const HeroSubtitle = styled.div<{hasCoAUthors: boolean}>`
 const ImageHeading = styled.p`
   margin: 10px auto;
   max-width: 450px;
-  color: ${p => p.theme.colors.grey};
+  color: ${(p) => p.theme.colors.grey};
   font-size: 18px;
-  font-family: ${p => p.theme.fonts.sansSerif};
+  font-family: ${(p) => p.theme.fonts.sansSerif};
   line-height: 1.4;
   text-align: center;
 
