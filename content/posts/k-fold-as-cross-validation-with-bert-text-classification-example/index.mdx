@@ -10,21 +10,18 @@ tag:
 photograph: Photo by Martin Sanchez on Unsplash
 ---
 
-K-Fold is a Cross-Validation method used to estimate the skill of a machine learning model on unseen data. It is commonly used to validate a model, because it is easy to understand, to implement and results are having a higher informative value than regular Validation Methods.
+K-fold is a cross-validation method used to estimate the skill of a machine learning model on unseen data. It is commonly used to validate a model, because it is easy to understand, to implement and results are having a higher informative value than regular Validation Methods.
 
-Cross-Validation is a resampling procedure used to validate machine learning models on a limited data set. The procedure has a single parameter called `K` that refers to the number of groups that a given data sample is to be split into, that's the reason why it´s called K-Fold. 
-  
+Cross-validation is a resampling procedure used to validate machine learning models on a limited data set. The procedure has a single parameter called K that refers to the number of groups that a given data sample is to be split into, that's the reason why it´s called K-fold.
 
-The choice of `K` is usually 5 or 10, but there is no formal rule. As `K` is getting larger, the resampling subsets is getting smaller. As the difference decreases, the bias of the technique becomes smaller. 
-
-The number of `K` also defines how often your Machine Learning Model is trained. Most of the time we split our data into train/validation sets in 80%-20%, 90%-10% or 70%-30% and train our Model once. In Cross-Validation, we split our model `K` times and then train. Be aware that this will result in longer training processes.
+The choice of K is usually 5 or 10, but there is no formal rule. As K is getting larger, the resampling subsets are getting smaller. The number of K also defines how often your Machine Learning Model is trained. Most of the time we split our data into train/validation sets in 80%-20%, 90%-10% or 70%-30% and train our model once. In cross-validation, we split our model K times and then train. Be aware that this will result in longer training processes.
 
 ## K-Fold steps:
 
-1. Shuffle the dataset randomly.  
+1. Shuffle the dataset.  
 2. Split the dataset into `K` groups.  
-3. For each unique group:   
-        1. Take one group as a test dataset.  
+3. For each unique group `g`:   
+        1. Take `g` as a test dataset.  
         2. Take the remaining groups as a training data set.  
         3. Fit a model on the training set and evaluate it on the test set.  
         4. Retain the evaluation score and discard the model.  
@@ -33,13 +30,14 @@ The number of `K` also defines how often your Machine Learning Model is trained.
 
 ![Illustration of K-Fold](./images/k-fold.svg)
 
-**The results of a K-Fold Cross-Validation run are often summarized with the mean of the model scores.**
+**The results of a K-fold cross-validation run are often summarized with the mean of the model scores.**
 
 ---
 
 # Scitkit-Learn Example
 
-The Example is a simple implementation with `Scikit-Learn` and a `scalar numpy-array`.
+The example is a simple implementation with scikit-learn and a scalar numpy array .
+
 ```python
     import numpy as np
     from sklearn.model_selection import KFold
@@ -57,8 +55,7 @@ The Example is a simple implementation with `Scikit-Learn` and a `scalar numpy-a
     #train: [0.1 0.2 0.3 0.5], test: [0.4 0.6]
 ```
 # Simpletransformers Example (BERT Text-Classification)
-
-The Example is an implementation for a `BERT Text-Classification` built with [`simpletransformers` library](https://github.com/ThilinaRajapakse/simpletransformers) and `Scikit-Learn`.
+The example is an implementation for a `BERT Text-Classification` with [`simpletransformers` library](https://github.com/ThilinaRajapakse/simpletransformers) and `Scikit-Learn`.
 
 ```python
     from simpletransformers.classification import ClassificationModel
@@ -72,7 +69,7 @@ The Example is an implementation for a `BERT Text-Classification` built with [`s
     					 ["Example sentence belonging to class 0", 0],
     					 ["Example eval sentence belonging to class 1", 1],
     					 ["Example eval sentence belonging to class 0", 0]]
-    train_data = pd.DataFrame(train_data)
+    train_data = pd.DataFrame(dataset)
     
     # prepare cross validation
     n=5
@@ -111,9 +108,8 @@ The Example is an implementation for a `BERT Text-Classification` built with [`s
 ---
 
 # Benefits of K-Fold Cross-Validation
+**Using all data**: By using K-fold cross-validation we are using the complete dataset, which is helpful if we have a small dataset because you split and train your model K times to see its performance instead of wasting X% for your validation dataset.
 
-**Using all data:** By using K-Fold Cross-Validation we are using the complete dataset, which is helpful if you have a small dataset because you split and train your model `K` times to see its performance instead of wasting X% for your validation dataset.
+**Getting more metrics**: Most of the time you have one result of metrics, but with K-Fold you´ll be able to get K results of the metric and can have a deeper look into your model's performance.
 
-**Getting more metrics:** Most of the time you have one result of metrics, but with K-Fold you´ll be able to get `K` results of the metric and can have a deeper look into your model's performance.
-
-**Achieving higher precision.** Validating your model against multiple "validation-sets" to get a higher level of reliability. An example would be, there are 3 speakers and 1500 recordings (500 for each speaker). If we do a simple train/validation split the result could be very different depending on the split.
+**Achieving higher precision**: By validating your model against multiple “validation-sets” we get a higher level of reliability. Let’s imagine the following example: We have 3 speakers and 1500 recordings (500 for each speaker). If we do a simple train/validation split the result could be very different depending on the split.
