@@ -1,3 +1,3 @@
 # this files includes all non content based changes
 
-v1.0
+v1.1
