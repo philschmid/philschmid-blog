@@ -1,7 +1,7 @@
 - name: Philipp Schmid
   bio: |
     Hello, I am Philipp 24 years old and a Cloud & Machine Learning enthusiast. 
-    If you are curious about something i wrote feel free to send me an email.
+    If you are curious about something I wrote, feel free to send me an email.
   avatar: ./avatars/philipp-schmid.jpg
   featured: true
   social:
@@ -24,7 +24,6 @@
     - I found my love for cloud and cloud concepts 2 years ago. Since then I
       have been trying to develop myself and learn new things. Last year I
       completed my first AWS certificate. In 2020 at least 2 more are planned.
-    - About one year ago I started to study machine learning. Now I want to
+    - About one year ago, I started to study machine learning. Now I want to
       share my projects and experience to educate myself and others.
-    - The purpose of my blog is to help others, share and connect with each
-      other.
+    - This blog is all about sharing and connecting ideas and people. Feel free to reach out to me on twitter @_philschmid or via email.
