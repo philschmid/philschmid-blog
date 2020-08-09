@@ -2,6 +2,7 @@
 
 module.exports = ({
   contentAuthors = 'content/authors',
+  contentNotebooks = 'content/notebooks',
   contentPosts = 'content/posts',
   pathPrefix = '',
   sources: {local, contentful} = {local: true, contentful: false},
@@ -55,54 +56,21 @@ module.exports = ({
         feeds: [
           {
             serialize: ({query: {site, allArticle, allContentfulPost}}) => {
-              if (local && !contentful) {
-                return allArticle.edges
-                  .filter((edge) => !edge.node.secret)
-                  .map((edge) => {
-                    return {
-                      ...edge.node,
-                      description: edge.node.excerpt,
-                      date: edge.node.date,
-                      url: site.siteMetadata.siteUrl + edge.node.slug,
-                      guid: site.siteMetadata.siteUrl + edge.node.slug,
-                      // custom_elements: [{ "content:encoded": edge.node.body }],
-                      author: edge.node.author,
-                    };
-                  });
-              } else if (!local && contentful) {
-                return allContentfulPost.edges
-                  .filter((edge) => !edge.node.secret)
-                  .map((edge) => {
-                    return {
-                      ...edge.node,
-                      description: edge.node.excerpt,
-                      date: edge.node.date,
-                      url: site.siteMetadata.siteUrl + edge.node.slug,
-                      guid: site.siteMetadata.siteUrl + edge.node.slug,
-                      // custom_elements: [{ "content:encoded": edge.node.body }],
-                      author: edge.node.author,
-                    };
-                  });
-              } else {
-                const allArticlesData = {...allArticle, ...allContentfulPost};
-                return allArticlesData.edges
-                  .filter((edge) => !edge.node.secret)
-                  .map((edge) => {
-                    return {
-                      ...edge.node,
-                      description: edge.node.excerpt,
-                      date: edge.node.date,
-                      url: site.siteMetadata.siteUrl + edge.node.slug,
-                      guid: site.siteMetadata.siteUrl + edge.node.slug,
-                      // custom_elements: [{ "content:encoded": edge.node.body }],
-                      author: edge.node.author,
-                    };
-                  });
-              }
+              return allArticle.edges
+                .filter(edge => !edge.node.secret)
+                .map(edge => {
+                  return {
+                    ...edge.node,
+                    description: edge.node.excerpt,
+                    date: edge.node.date,
+                    url: site.siteMetadata.siteUrl + edge.node.slug,
+                    guid: site.siteMetadata.siteUrl + edge.node.slug,
+                    // custom_elements: [{ "content:encoded": edge.node.body }],
+                    author: edge.node.author,
+                  };
+                });
             },
-            query:
-              local && !contentful
-                ? `
+            query: `
               {
                 allArticle(sort: {order: DESC, fields: date}) {
                   edges {
@@ -114,63 +82,6 @@ module.exports = ({
                       slug
                       title
                       author
-                      secret
-                    }
-                  }
-                }
-              }
-              `
-                : !local && contentful
-                ? `
-              {
-                allContentfulPost(sort: {order: DESC, fields: date}) {
-                  edges {
-                    node {
-                      excerpt
-                      photograph
-                      date
-                      tag
-                      slug
-                      title
-                      author {
-                        name
-                      }
-                      secret
-                    }
-                  }
-                }
-              }
-              `
-                : `
-              {
-                allArticle(sort: {order: DESC, fields: date}) {
-                  edges {
-                    node {
-                      excerpt
-                      photograph
-                      date
-                      tag
-                      slug
-                      title
-                      author
-                      secret
-                    }
-                  }
-                }
-              }
-              {
-                allContentfulPost(sort: {order: DESC, fields: date}) {
-                  edges {
-                    node {
-                      excerpt
-                      photograph
-                      tag
-                      date
-                      slug
-                      title
-                      author {
-                        name
-                      }
                       secret
                     }
                   }
@@ -194,6 +105,13 @@ module.exports = ({
       options: {
         path: contentAuthors,
         name: contentAuthors,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: contentNotebooks,
+        name: contentNotebooks,
       },
     },
     {
