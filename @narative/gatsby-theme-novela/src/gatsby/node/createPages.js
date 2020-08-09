@@ -12,6 +12,7 @@ const templatesDirectory = path.resolve(__dirname, '../../templates');
 const templates = {
   articles: path.resolve(templatesDirectory, 'articles.template.tsx'),
   article: path.resolve(templatesDirectory, 'article.template.tsx'),
+  notebook: path.resolve(templatesDirectory, 'notebook.template.tsx'),
   author: path.resolve(templatesDirectory, 'author.template.tsx'),
 };
 
@@ -64,7 +65,7 @@ module.exports = async ({actions: {createPage}, graphql}, themeOptions) => {
   let articles;
 
   const dataSources = {
-    local: {authors: [], articles: []},
+    local: {authors: [], articles: [], notebooks: []},
   };
 
   if (rootPath) {
@@ -81,6 +82,7 @@ module.exports = async ({actions: {createPage}, graphql}, themeOptions) => {
       log('Querying Authors & Articles source:', 'Local');
       const localAuthors = await graphql(query.local.authors);
       const localArticles = await graphql(query.local.articles);
+      const localNotebooks = await graphql(query.local.notebooks);
 
       dataSources.local.authors = localAuthors.data.authors.edges.map(
         normalize.local.authors,
@@ -89,6 +91,11 @@ module.exports = async ({actions: {createPage}, graphql}, themeOptions) => {
       dataSources.local.articles = localArticles.data.articles.edges.map(
         normalize.local.articles,
       );
+
+      dataSources.local.notebooks = localNotebooks.data.notebooks.edges.map(
+        normalize.local.notebooks,
+      );
+      console.log(localNotebooks);
     } catch (error) {
       console.error(error);
     }
@@ -218,4 +225,101 @@ module.exports = async ({actions: {createPage}, graphql}, themeOptions) => {
       });
     });
   }
+
+  // //
+  // Notebooks stuff
+  // //
+
+  // Combining together all the notebooks from different sources
+  notebooks = [...dataSources.local.notebooks].sort(byDate);
+
+  // Combining together all the authors from different sources
+  authors = getUniqueListBy([...dataSources.local.authors], 'name');
+
+  if (notebooks.length === 0 || notebooks.length === 0) {
+    throw new Error(`
+    You must have at least one Author and Post. As reference you can view the
+    example repository. Look at the content folder in the example repo.
+    https://github.com/narative/gatsby-theme-novela-example
+  `);
+  }
+
+  /**
+   * Once we've queried all our data sources and normalized them to the same structure
+   * we can begin creating our pages. First, we'll want to create all main articles pages
+   * that have pagination.
+   * /articles
+   * /articles/page/1
+   * ...
+   */
+  // log('Creating', 'notebooks page');
+  // createPaginatedPages({
+  //   edges: notebooks,
+  //   pathPrefix: basePath,
+  //   createPage,
+  //   pageLength,
+  //   pageTemplate: templates.notebooks,
+  //   buildPath: buildPaginatedPath,
+  //   context: {
+  //     authors,
+  //     basePath,
+  //     skip: pageLength,
+  //     limit: pageLength,
+  //   },
+  // });
+
+  /**
+   * Once the list of articles have bene created, we need to make individual article posts.
+   * To do this, we need to find the corresponding authors since we allow for co-authors.
+   */
+  log('Creating', 'notebook posts');
+  log('Count of notebooks', notebooks.length);
+  notebooks.forEach((notebook, index) => {
+    // Match the Author to the one specified in the article
+    let authorsThatWroteTheNotebook;
+    try {
+      authorsThatWroteTheNotebook = authors.filter(author => {
+        const allAuthors = notebook.author
+          .split(',')
+          .map(a => a.trim().toLowerCase());
+
+        return allAuthors.some(a => a === author.name.toLowerCase());
+      });
+    } catch (error) {
+      throw new Error(`
+        We could not find the Author for: "${notebook.title}".
+        Double check the author field is specified in your post and the name
+        matches a specified author.
+        Provided author: ${notebook.author}
+        ${error}
+      `);
+    }
+
+    /**
+     * We need a way to find the next artiles to suggest at the bottom of the articles page.
+     * To accomplish this there is some special logic surrounding what to show next.
+     */
+    let next = notebooks.slice(index + 1, index + 3);
+    // If it's the last item in the list, there will be no articles. So grab the first 2
+    if (next.length === 0) next = notebooks.slice(0, 2);
+    // If there's 1 item in the list, grab the first article
+    if (next.length === 1 && notebooks.length !== 2)
+      next = [...next, notebooks[0]];
+    if (notebooks.length === 1) next = [];
+
+    createPage({
+      path: notebook.slug,
+      component: templates.notebook,
+      context: {
+        notebook,
+        authors: authorsThatWroteTheNotebook,
+        basePath,
+        slug: notebook.slug,
+        id: notebook.id,
+        title: notebook.title,
+        mailchimp,
+        next,
+      },
+    });
+  });
 };

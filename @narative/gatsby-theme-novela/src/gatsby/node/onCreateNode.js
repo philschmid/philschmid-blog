@@ -7,6 +7,7 @@ const crypto = require(`crypto`);
 module.exports = ({node, actions, getNode, createNodeId}, themeOptions) => {
   const {createNode, createNodeField, createParentChildLink} = actions;
   const contentPath = themeOptions.contentPath || 'content/posts';
+  const notebooksPath = themeOptions.notebooksPath || 'content/notebooks';
   const basePath = themeOptions.basePath || '/';
   const articlePermalinkFormat = themeOptions.articlePermalinkFormat || ':slug';
 
@@ -137,5 +138,45 @@ module.exports = ({node, actions, getNode, createNodeId}, themeOptions) => {
       name: `authorsPage`,
       value: themeOptions.authorsPage || false,
     });
+  }
+  // Add Notebooks
+
+  if (node.internal.type === `Mdx` && source === notebooksPath) {
+    const fieldData = {
+      author: node.frontmatter.author,
+      date: node.frontmatter.date,
+      hero: node.frontmatter.hero,
+      secret: node.frontmatter.secret || false,
+      slug: generateSlug(
+        basePath,
+        generateArticlePermalink(
+          slugify(node.frontmatter.slug || node.frontmatter.title),
+          node.frontmatter.date,
+        ),
+      ),
+      title: node.frontmatter.title,
+      subscription: node.frontmatter.subscription !== false,
+      tag: node.frontmatter.tag,
+      photograph: node.frontmatter.photograph,
+    };
+
+    createNode({
+      ...fieldData,
+      // Required fields.
+      id: createNodeId(`${node.id} >>> Notebooks`),
+      parent: node.id,
+      children: [],
+      internal: {
+        type: `Notebook`,
+        contentDigest: crypto
+          .createHash(`md5`)
+          .update(JSON.stringify(fieldData))
+          .digest(`hex`),
+        content: JSON.stringify(fieldData),
+        description: `Notebook Posts`,
+      },
+    });
+
+    createParentChildLink({parent: fileNode, child: node});
   }
 };

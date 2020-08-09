@@ -31,4 +31,17 @@ module.exports = ({createResolvers}) => {
       },
     },
   });
+  createResolvers({
+    Notebook: {
+      excerpt: {
+        resolve: mdxResolverPassthrough(`excerpt`),
+      },
+      body: {
+        resolve: mdxResolverPassthrough(`body`),
+      },
+      timeToRead: {
+        resolve: mdxResolverPassthrough(`timeToRead`),
+      },
+    },
+  });
 };
