@@ -7,6 +7,10 @@ import mediaqueries from '@styles/media';
 import {IArticle, IAuthor} from '@types';
 
 import ArticleAuthors from '../article/Article.Authors';
+import Image from '../../components/Image/Image';
+
+import GithubBadge from '../../icons/badges/github-badge.svg';
+import ColabBadge from '../../icons/badges/colab-badge.svg';
 
 interface NotebookHeroProps {
   notebook: IArticle;
@@ -21,14 +25,30 @@ const NotebookHero = ({notebook, authors}: NotebookHeroProps) => {
       <Header>
         <HeroHeading>{notebook.title}</HeroHeading>
         <HeroSubtitle hasCoAUthors={hasCoAUthors}>
-          <ArticleAuthors authors={authors} />
-          <ArticleMeta hasCoAUthors={hasCoAUthors}>
-            {notebook.date} · {Math.round(notebook.timeToRead * 1.8)} min read
-          </ArticleMeta>
-          {notebook.tag.map(tag => (
-            <ArticleTag key={tag}>#{tag} </ArticleTag>
-          ))}
+          <div style={{width: '100%', display: 'flex'}}>
+            <ArticleAuthors authors={authors} style={{width: '100%'}} />
+            <ArticleMeta hasCoAUthors={hasCoAUthors}>
+              {notebook.date} · {Math.round(notebook.timeToRead * 1.8)} min read
+            </ArticleMeta>
+            {notebook.tag.map(tag => (
+              <ArticleTag key={tag}>#{tag} </ArticleTag>
+            ))}
+          </div>
         </HeroSubtitle>
+        {notebook.links && (
+          <HeroLinkArea>
+            {notebook.links.colab && (
+              <LinkBadge href={notebook.links.colab} target="_blank">
+                <Image width={150} src={ColabBadge}></Image>
+              </LinkBadge>
+            )}
+            {notebook.links.github && (
+              <LinkBadge href={notebook.links.github} target="_blank">
+                <Image width={150} src={GithubBadge}></Image>
+              </LinkBadge>
+            )}
+          </HeroLinkArea>
+        )}
       </Header>
     </Hero>
   );
@@ -66,10 +86,9 @@ const Hero = styled.div`
 
 const ArticleMeta = styled.div<{hasCoAUthors: boolean}>`
   margin-left: ${p => (p.hasCoAUthors ? '10px' : '0')};
-
   ${mediaqueries.phablet`
     margin-left: 0;
-  `}
+  `};
 `;
 const ArticleTag = styled.div`
   margin-left: 10px;
@@ -79,13 +98,20 @@ const ArticleTag = styled.div`
     margin-left: 0;
   `}
 `;
+const LinkBadge = styled.daiv`
+  margin-right: 10px;
+
+  ${mediaqueries.phablet`
+    margin-right: 5px;
+  `}
+`;
 
 const Header = styled.header`
   position: relative;
   z-index: 10;
   margin:100px auto 40px;
   padding-left: 68px;
-  max-width: 749px;
+  max-width: 1000px;
 
   ${mediaqueries.desktop`
     padding-left: 53px;
@@ -127,6 +153,7 @@ const HeroSubtitle = styled.div<{hasCoAUthors: boolean}>`
   position: relative;
   display: flex;
   font-size: 18px;
+  align-items: stretch;
   color: ${p => p.theme.colors.grey};
 
   ${p => mediaqueries.phablet`
@@ -157,42 +184,16 @@ const HeroSubtitle = styled.div<{hasCoAUthors: boolean}>`
   `}
 `;
 
-const ImageHeading = styled.p`
-  margin: 10px auto;
-  max-width: 450px;
-  color: ${p => p.theme.colors.grey};
-  font-size: 18px;
-  font-family: ${p => p.theme.fonts.sansSerif};
-  line-height: 1.4;
-  text-align: center;
-
-  ${mediaqueries.phablet`
-    font-size: 14px;
-  `}
-`;
-
-const HeroImage = styled.div`
+const HeroLinkArea = styled.div`
   position: relative;
-  z-index: 1;
-  width: 100%;
-  max-height: 600px;
-  max-width: 1100px;
-  overflow: hidden;
-  margin: 0 auto;
-  /* box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.2),
-    0 18px 36px -18px rgba(0, 0, 0, 0.22); */
+  display: flex;
+  font-size: 18px;
+  align-items: stretch;
+  color: ${p => p.theme.colors.grey};
+  margin: 15px 0;
 
-  ${mediaqueries.tablet`
-    max-width: 100%;
+  ${p => mediaqueries.phablet`
+    font-size: 14px;
+    flex-direction: column;
   `}
-
-  ${mediaqueries.phablet`
-    margin: 0 auto;
-    width: calc(100vw - 40px);
-    height: 220px;
-
-    & > div {
-      height: 220px;
-    }
-`}
 `;
