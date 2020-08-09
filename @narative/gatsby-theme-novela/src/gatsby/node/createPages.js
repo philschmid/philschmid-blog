@@ -79,7 +79,7 @@ module.exports = async ({actions: {createPage}, graphql}, themeOptions) => {
 
   if (local) {
     try {
-      log('Querying Authors & Articles source:', 'Local');
+      log('Querying Authors, Articles & Notebooks source:', 'Local');
       const localAuthors = await graphql(query.local.authors);
       const localArticles = await graphql(query.local.articles);
       const localNotebooks = await graphql(query.local.notebooks);
@@ -87,15 +87,17 @@ module.exports = async ({actions: {createPage}, graphql}, themeOptions) => {
       dataSources.local.authors = localAuthors.data.authors.edges.map(
         normalize.local.authors,
       );
+      log('Found Authors:', dataSources.local.authors.length);
 
       dataSources.local.articles = localArticles.data.articles.edges.map(
         normalize.local.articles,
       );
+      log('Found Articles:', dataSources.local.articles.length);
 
       dataSources.local.notebooks = localNotebooks.data.notebooks.edges.map(
         normalize.local.notebooks,
       );
-      console.log(localNotebooks);
+      log('Found Notebooks:', JdataSources.local.notebooks.length);
     } catch (error) {
       console.error(error);
     }
@@ -233,12 +235,14 @@ module.exports = async ({actions: {createPage}, graphql}, themeOptions) => {
   // Combining together all the notebooks from different sources
   notebooks = [...dataSources.local.notebooks].sort(byDate);
 
+  log('Count of notebooks', notebooks.length);
+
   // Combining together all the authors from different sources
   authors = getUniqueListBy([...dataSources.local.authors], 'name');
 
   if (notebooks.length === 0 || notebooks.length === 0) {
     throw new Error(`
-    You must have at least one Author and Post. As reference you can view the
+    You must have at least one Author and Notebook. As reference you can view the
     example repository. Look at the content folder in the example repo.
     https://github.com/narative/gatsby-theme-novela-example
   `);

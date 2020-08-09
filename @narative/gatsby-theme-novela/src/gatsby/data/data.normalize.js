@@ -59,7 +59,6 @@ module.exports.local = {
   notebooks: ({node: notebook}) => {
     return {
       ...notebook,
-      hero: normalizeHero(notebook),
     };
   },
   authors: ({node: author}) => {

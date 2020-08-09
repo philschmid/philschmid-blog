@@ -11,12 +11,10 @@ import Section from '@components/Section';
 import mediaqueries from '@styles/media';
 import {debounce} from '@utils';
 
-import ArticleAside from '../sections/article/Article.Aside';
-import ArticleHero from '../sections/article/Article.Hero';
-import ArticleControls from '../sections/article/Article.Controls';
 import ArticlesNext from '../sections/article/Article.Next';
 import ArticleSEO from '../sections/article/Article.SEO';
 import ArticleShare from '../sections/article/Article.Share';
+import NotebookHero from '../sections/notebook/Notebook.Hero';
 
 const siteQuery = graphql`
   {
@@ -41,7 +39,6 @@ function Notebook({pageContext, location}) {
   const results = useStaticQuery(siteQuery);
   const name = results.allSite.edges[0].node.siteMetadata.name;
 
-  console.log(pageContext);
   const {notebook, authors, next} = pageContext;
 
   useEffect(() => {
@@ -81,10 +78,8 @@ function Notebook({pageContext, location}) {
   return (
     <Layout>
       <ArticleSEO article={notebook} authors={authors} location={location} />
-      <ArticleHero article={notebook} authors={authors} />
-      <ArticleAside contentHeight={contentHeight}>
-        <Progress contentHeight={contentHeight} />
-      </ArticleAside>
+      <NotebookHero notebook={notebook} authors={authors} />
+
       <ArticleBody ref={contentSectionRef}>
         <MDXRenderer content={notebook.body}>
           <ArticleShare />

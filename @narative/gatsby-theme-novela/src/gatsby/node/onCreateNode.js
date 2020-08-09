@@ -145,7 +145,6 @@ module.exports = ({node, actions, getNode, createNodeId}, themeOptions) => {
     const fieldData = {
       author: node.frontmatter.author,
       date: node.frontmatter.date,
-      hero: node.frontmatter.hero,
       secret: node.frontmatter.secret || false,
       slug: generateSlug(
         basePath,
@@ -157,7 +156,7 @@ module.exports = ({node, actions, getNode, createNodeId}, themeOptions) => {
       title: node.frontmatter.title,
       subscription: node.frontmatter.subscription !== false,
       tag: node.frontmatter.tag,
-      photograph: node.frontmatter.photograph,
+      links: node.frontmatter.links,
     };
 
     createNode({
