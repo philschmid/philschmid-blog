@@ -12,7 +12,7 @@ jobs:
       AWS_CF_DISTRIBUTION_ID: E1ZRC9R5Y0LLL0
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [12.x]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
@@ -20,9 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
       - name: Build Application
-        run: npm run-script build
+        run: yarn build
       - uses: jakejarvis/s3-sync-action@master
         name: Upload App to S3 Bucket
         with:
